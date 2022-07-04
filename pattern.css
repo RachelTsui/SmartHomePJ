@@ -55,7 +55,7 @@ body{
     grid-template-columns: 14rem auto 23rem;
 }
 a{
-    color: var(--color-dark);
+    color: #1bec1e;
 }
 
 img{
@@ -85,7 +85,7 @@ h5{
 }
 
 small{
-    font-size: 0.75rem;
+    font-size: 1.2rem;
 }
 
 .profile-photo{

@@ -8,8 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
       rel="stylesheet">
     <!-- STYLESHEET -->  
-    <link rel="stylesheet" href="./theme.css">
-    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./addeq.css">
 </head>
 <body>
     <div class="container">
@@ -33,11 +32,11 @@
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="./theme.html">
+                <a href="#">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
-                <a href="./message.html">
+                <a href="#">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
@@ -58,21 +57,29 @@
             </div>
         </aside>
         <main>
-            <h1>Messages</h1>
-                <p class="greeting" style="color: gray; font-size: 20px;">Please submit your own opinion </p>
-                <input>
-                <div class="themepallete"  >
-                    <div class="theme">
-                        <label for="theme" class="text-muted" >What do you wang to say</label>
-                        <div>
-                            <input id="message"  class="messageinput" required maxlength="200" style="font-size:20px;">
-                        </div>
-                    </div>  
-    <!-- end of p4 -->
+            <h1>Add Equipment</h1>
+            
+                <p class="greeting" style="color: gray; font-size: 20px;">Please add your equipment </p>
+            
+            <div class="insights" id="">
+                <div class="device">
+                    <label for="inp_eq_name" class="text-muted">Please input your equipment name <br> </label>
+                    <input id="name" required="" style="font-size:20px;">
+                    <label for="inp_eq_fixday" class="text-muted"><br><br>Please input your equipment maintenance cycle<br></label>
+                    <input id="fixday" required="" style="font-size:20px;">
+                    <label for="inp_eq_state" class="text-muted"><br><br>Please choose your equipment work state<br></label>
+                    <select id="stateselect" style="font-size:20px;">
+                            <option value="close">Close</option>
+                            <option value="open">Open</option>
+                            <option value="llight">Light</option>
+                            <option value="fan">Fan</option>
+                        </select><div>
+                        
+                    </div>
                 </div>
-            <div class="themepallete" id="hello">
-                <p class="themetext" id="themeletter"></p> 
+
             </div>
+            
             
         </main>
     </div>
@@ -82,16 +89,21 @@
 <script>
     document.onkeydown = function(e){
         if((e||event).keyCode==13){
-           
-            var message = document.getElementById("message").value;
-            themeletter.classList.add("themetext");
+            var devices = document.getElementById("deviceselect").value;
+            var onTime = document.getElementById("onTime").value;
+            var offTime = document.getElementById("offTime").value;
+            var place = document.getElementById("place").value;
+            var theme = document.getElementById("theme").value;
             var board = document.querySelector("#hello")
+            var message = "Mode: "+ theme + " - The " + devices + " will be turned on at " + onTime +" and turned of at " + offTime;
+            var themeletter = document.createElement("div");
+            themeletter.classList.add("themetext");
+
             var themes = document.createElement("div");
             themes.classList.add("themepallete");
             themes.innerText = message;
             themes.appendChild(themeletter);
             board.appendChild(themes);
-            console.log(message);
         }
     }
 </script>
