@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard using HTML</title> 
+    <!-- MATERIALICONS  -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
+      rel="stylesheet">
+    <!-- STYLESHEET -->  
+    <link rel="stylesheet" href="./theme.css">
+    <script src="./theme.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top" >
+                <div class="logo">
+                    <img src="./images/sharp_holiday_village_black_24dp.png" >
+                    <h2>IH<span class="danger">AC</span></h2>
+                    
+                </div>
+                <div class="close">
+                    <span class="material-icons-sharp">close</span>
+                </div>  
+            </div>
+            <div class="sidebar">
+                <a href="./index.html"  >
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="./equioments.html" >
+                    <span class="material-icons-sharp">precision_manufacturing</span>
+                    <h3>Equipment</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-outlined">color_lens</span>
+                    <h3>Themes</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">email</span>
+                    <h3>Messages</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">add_circle</span>
+                    <h3>Add Products</h3>
+                </a>
+                <a href="./login.html">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Log Out</h3>
+                </a>
+                
+            </div>
+        </aside>
+        <main>
+            <h1>Themes</h1>
+            
+                <p class="greeting" style="color: gray; font-size: 20px;">Please DIY your personal theme </p>
+            
+            <div class="insights" id >
+                <div class="device">
+                    <label for="deviceselect" class="text-muted">pls select your device</label>
+                    <div>
+                        <select id="deviceselect" style="font-size:20px;">
+                            <option value="XiaomiTV">XiaomiTV</option>
+                            <option value="Toothbrush">Toothbrush</option>
+                            <option value="Fan">Fan</option>
+                            <option value="DishWasher">Dish Washer</option>
+                        </select>
+                    </div>
+                </div>
+<!-- end of equipment -->
+                <div class="device">
+                    <label for="deviceselect" class="text-muted">Please select the preferable <b>OFF</b> time</label>
+                    <div>
+                        
+                            <input type="time" id="onTime" name="onTime" min="09:00" max="18:00" required style="font-size:20px;">
+                        
+                    </div>
+                </div>
+<!-- end of health -->
+                <div class="device">
+                    <label for="offTime" class="text-muted" >Please select the preferable <b>OFF</b> time</label>
+                    <input type="time" id="offTime" name="offTime" min="09:00" max="18:00" required style="font-size:20px;">
+                </div>      
+<!-- end of alert  -->
+                <div class="device">
+                    <label for="place" class="text-muted">Please set the place</label>
+                    <div>
+                        <select name="" id="place" style="font-size:20px;">
+                            <option value="Livingroom">Living Room</option>
+                            <option value="Bathroom">Bathroom</option>
+                            <option value="Kitchen">Kitchen</option>
+                            <option value="Diningroom">Dining Room</option>
+                            <option value="Balcony">Balcony</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="theme">
+                    <label for="theme" class="text-muted" >Please DIY your <b>theme</b> name </label>
+                    <input id="theme" required style="font-size:20px;">
+                </div>  
+<!-- end of p4 -->
+            </div>
+            <div class="themepallete" id="hello">
+                <p class="themetext" id="themeletter">This is your themes</p> 
+            </div>
+            
+        </main>
+    </div>
+</body>
+</html>
+
+<script>
+    document.onkeydown = function(e){
+        if((e||event).keyCode==13){
+            var devices = document.getElementById("deviceselect").value;
+            var onTime = document.getElementById("onTime").value;
+            var offTime = document.getElementById("offTime").value;
+            var place = document.getElementById("place").value;
+            var theme = document.getElementById("theme").value;
+            var board = document.querySelector("#hello")
+            var message = "Mode: "+ theme + " - The " + devices + " will be turned on at " + onTime +" and turned of at " + offTime;
+            var themeletter = document.createElement("div");
+            themeletter.classList.add("themetext");
+
+            var themes = document.createElement("div");
+            themes.classList.add("themepallete");
+            themes.innerText = message;
+            themes.appendChild(themeletter);
+            board.appendChild(themes);
+        }
+    }
+</script>
