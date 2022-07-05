@@ -1,35 +1,39 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Dashboard using HTML</title> 
+    <title>Responsive Dashboard using HTML</title>
     <!-- MATERIALICONS  -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
-      rel="stylesheet">
-    <!-- STYLESHEET -->  
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
+        rel="stylesheet">
+    <!-- STYLESHEET -->
+    
     <link rel="stylesheet" href="./theme.css">
     <script src="./theme.js"></script>
 </head>
+
 <body>
     <div class="container">
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./images/sharp_holiday_village_black_24dp.png" >
+                    <img src="./images/sharp_holiday_village_black_24dp.png">
                     <h2>IH<span class="danger">AC</span></h2>
-                    
+
                 </div>
                 <div class="close">
                     <span class="material-icons-sharp">close</span>
-                </div>  
+                </div>
             </div>
             <div class="sidebar">
-                <a href="./index.html"  >
+                <a href="./index.html">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html" >
+                <a href="./equipments.html">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -54,37 +58,56 @@
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
-                
+
             </div>
         </aside>
         <main>
             <h1>Messages</h1>
-                <p class="greeting" style="color: gray; font-size: 20px;">Please submit your own opinion </p>
-                <input>
-                <div class="themepallete"  >
-                    <div class="theme">
-                        <label for="theme" class="text-muted" >What do you wang to say</label>
-                        <div>
-                            <input id="message"  class="messageinput" required maxlength="200" style="font-size:20px;">
-                        </div>
-                    </div>  
-    <!-- end of p4 -->
+            <p class="greeting" style="color: gray; font-size: 20px;">Please submit your own opinion </p>
+            <!--<div class="themepallete">
+                <div class="theme">
+                    <label for="theme" class="text-muted">What do you wang to say</label>
+                    <div>
+                        <input id="message" class="messageinput" required maxlength="200" style="font-size:20px;">
+                    </div>
                 </div>
-            <div class="themepallete" id="hello">
-                <p class="themetext" id="themeletter"></p> 
             </div>
-            
+
+            <div class="themepallete" id="hello">
+                <p class="themetext" id="themeletter"></p>
+            </div>-->
+            <form action="message.php" method="post">
+                
+                <div class="themepallete">
+                    <div class=="theme">
+                        <label for="theme" class="text-muted">What's your id</label>
+                        <div>
+                            <input type="usr_id" id="usr_id" name="usr_id">
+                        </div> 
+                    </div>
+                    <div class=="theme">
+                        <label for="theme" class="text-muted">What do you wang to say</label>
+                        <div>
+                            <input type="mess" id="mess" name="mess">
+                        </div> 
+                    </div>
+                    <button>send</button>
+                </div>
+
+            </form>
+
         </main>
     </div>
 </body>
+
 </html>
 
 <script>
-    document.onkeydown = function(e){
-        if((e||event).keyCode==13){
-           
+    document.onkeydown = function (e) {
+        if ((e || event).keyCode == 13) {
+
             var message = document.getElementById("message").value;
-            themeletter.classList.add("themetext");
+            themeletter.classList.add("message");
             var board = document.querySelector("#hello")
             var themes = document.createElement("div");
             themes.classList.add("themepallete");
