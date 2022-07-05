@@ -1,31 +1,32 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Dashboard using HTML</title> 
+    <title>Responsive Dashboard using HTML</title>
     <!-- MATERIALICONS  -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
-      rel="stylesheet">
-    <!-- STYLESHEET -->  
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
+    <!-- STYLESHEET -->
     <link rel="stylesheet" href="./style.css">
 
 </head>
+
 <body>
     <div class="container">
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./images/sharp_holiday_village_black_24dp.png" >
+                    <img src="./images/sharp_holiday_village_black_24dp.png">
                     <h2>IH<span class="danger">AC</span></h2>
-                    
+
                 </div>
                 <div class="close">
                     <span class="material-icons-sharp">close</span>
-                </div>  
+                </div>
             </div>
             <div class="sidebar">
-                <a href="./index.html" class="active" >
+                <a href="./index.html" class="active">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
@@ -54,7 +55,7 @@
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
-                
+
             </div>
         </aside>
         <main>
@@ -69,14 +70,14 @@
                     <div class="middle">
                         <div class="left">
                             <a href="./equioments.html">
-                                <h3 >Total Number of Equipments</h3>
+                                <h3>Total Number of Equipments</h3>
                                 <h1>4</h1>
                             </a>
                         </div>
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
-<!-- end of equipment -->
+                <!-- end of equipment -->
                 <div class="health">
                     <span class="material-icons-sharp">health_and_safety</span>
                     <div class="middle">
@@ -87,7 +88,7 @@
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
-<!-- end of health -->
+                <!-- end of health -->
                 <div class="alert">
                     <span class="material-icons-sharp">notifications</span>
                     <div class="middle">
@@ -98,9 +99,9 @@
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
-<!-- end of alert  -->
+                <!-- end of alert  -->
             </div>
-<!-- end of insights -->
+            <!-- end of insights -->
             <div class="details">
                 <h2>Equipments Details</h2>
                 <table>
@@ -115,37 +116,37 @@
                     </thead>
                     <tbody>
                         <tr>
-                                <td>Air conditioner</td> 
-                                <td>Living room</td>
-                                <td class="success">Charging</td>
-                                <td class="success">Good</td>
+                            <td>Air conditioner</td>
+                            <td>Living room</td>
+                            <td class="success">Charging</td>
+                            <td class="success">Good</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                                <td>Air conditioner</td> 
-                                <td>Living room</td>
-                                <td class="success">Charging</td>
-                                <td class="success">Good</td>
+                            <td>Air conditioner</td>
+                            <td>Living room</td>
+                            <td class="success">Charging</td>
+                            <td class="success">Good</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                                <td>Air conditioner</td> 
-                                <td>Living room</td>
-                                <td class="success">Charging</td>
-                                <td class="success">Good</td>
+                            <td>Air conditioner</td>
+                            <td>Living room</td>
+                            <td class="success">Charging</td>
+                            <td class="success">Good</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr>
-                                <td>Air conditioner</td> 
-                                <td>Living room</td>
-                                <td class="success">Charging</td>
-                                <td class="success">Good</td>
+                            <td>Air conditioner</td>
+                            <td>Living room</td>
+                            <td class="success">Charging</td>
+                            <td class="success">Good</td>
                         </tr>
                     </tbody>
-                    
+
                 </table>
                 <a href="#">show all</a>
 
@@ -171,8 +172,19 @@
                             <img src="./images/profile-3.jpg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>bx: </b>Add a new Equipment: Air Filter Add a new Equipment: Air FilterAdd a new Equipment: Air FilterAdd a new Equipment: Air Filter</p>
-                            <small class="text-muted">2 mins ago</small>
+                            <?php
+                            $mysqli = require __DIR__ . "/database.php";
+                            $sql = "INSERT INTO message (name, message, time)
+                            VALUES (?,?,?)";
+                            $stmt = $mysqli->stmt_init();
+
+                            if (!$stmt->prepare($sql)) {
+                                die("SQL error: " . $mysqli->error);
+                            }
+
+                            $result = mysqli_query($mysqli, "SELECT message FROM message");
+                            echo $message;
+                            ?>
                         </div>
                     </div>
                     <div class="update">
@@ -199,4 +211,5 @@
         </div>
     </div>
 </body>
+
 </html>
