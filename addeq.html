@@ -63,19 +63,36 @@
             
             <div class="insights" id="">
                 <div class="device">
-                    <label for="inp_eq_name" class="text-muted">Please input your equipment name <br> </label>
-                    <input id="name" required="" style="font-size:20px;">
-                    <label for="inp_eq_fixday" class="text-muted"><br><br>Please input your equipment maintenance cycle<br></label>
-                    <input id="fixday" required="" style="font-size:20px;">
-                    <label for="inp_eq_state" class="text-muted"><br><br>Please choose your equipment work state<br></label>
-                    <select id="stateselect" style="font-size:20px;">
-                            <option value="close">Close</option>
-                            <option value="open">Open</option>
-                            <option value="llight">Light</option>
-                            <option value="fan">Fan</option>
-                        </select><div>
-                        
+                    <form action = "process-addeq.php" method="post">
+                        <div>
+                            <label for="ID" class="text-muted">Please input your equipment ID <br></label>
+                            <input type="number" id="ID" name="ID" required="" style="font-size:20px;">
+                        </div>
+                    <div>
+                        <label for="Name" class="text-muted"><br>Please input your equipment name <br></label>
+                        <input type="text" id="Name" name="Name" required="" style="font-size:20px;">
                     </div>
+                    <div>
+                        <label for="Cycle" class="text-muted"><br>Please input your equipment maintenance cycle<br></label>
+                        <input type="number" id="Cycle" name="Cycle" required="" style="font-size:20px;">
+                        <label for="Cycle" class="text-muted">days<br></label>
+                    </div>
+                    <div>
+                        <label for="Battery" class="text-muted"><br>Does your equipment require batteries<br></label>
+                            <input type="radio" name="Battery" value=1>Yes<br>
+                            <input type="radio" name="Battery" value=0>No<br>
+                    </div>
+                    
+                    <div>
+                        <label for="Kind" class="text-muted"><br>Please choose your equipment kind<br></label>
+                        <select type="number" id="Kind" name="Kind"style="font-size:20px;">
+                            <option value='电视'>电视</option>
+                            <option value='路由器'>路由器</option>
+                            <option value='灯'>灯</option>
+                        </select>
+                    </div>
+                    <button>Submit</button>
+                    </form>
                 </div>
 
             </div>
