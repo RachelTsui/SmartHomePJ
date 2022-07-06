@@ -166,6 +166,7 @@
             </div>
             <div class="recent-updates">
                 <h2>Recent-Updates</h2>
+
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
@@ -182,8 +183,12 @@
                                 die("SQL error: " . $mysqli->error);
                             }
 
-                            $result = mysqli_query($mysqli, "SELECT message FROM message");
-                            echo $message;
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 1,1");
+                            $row = $result->fetch_assoc();
+                            echo "<b>$row[name]: </b>";
+                            print_r($row['message']);
+                            echo '<br>';
+                            print_r($row['time']);
                             ?>
                         </div>
                     </div>
@@ -192,8 +197,23 @@
                             <img src="./images/profile-4.jpg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>sql: </b>Add a new Equipment: Air Filter Add a new Equipment: Air FilterAdd a new Equipment: Air FilterAdd a new Equipment: Air Filter</p>
-                            <small class="text-muted">2 mins ago</small>
+                        <?php
+                            $mysqli = require __DIR__ . "/database.php";
+                            $sql = "INSERT INTO message (name, message, time)
+                            VALUES (?,?,?)";
+                            $stmt = $mysqli->stmt_init();
+
+                            if (!$stmt->prepare($sql)) {
+                                die("SQL error: " . $mysqli->error);
+                            }
+
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 2,2");
+                            $row = $result->fetch_assoc();
+                            echo "<b>$row[name]: </b>";
+                            print_r($row['message']);
+                            echo '<br>';
+                            print_r($row['time']);
+                            ?>
                         </div>
                     </div>
                     <div class="update">
@@ -201,8 +221,23 @@
                             <img src="./images/profile-1.jpg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>ccj: </b>Add a new Equipment: Air Filter Add a new Equipment: Air FilterAdd a new Equipment: Air FilterAdd a new Equipment: Air Filter</p>
-                            <small class="text-muted">2 mins ago</small>
+                        <?php
+                            $mysqli = require __DIR__ . "/database.php";
+                            $sql = "INSERT INTO message (name, message, time)
+                            VALUES (?,?,?)";
+                            $stmt = $mysqli->stmt_init();
+
+                            if (!$stmt->prepare($sql)) {
+                                die("SQL error: " . $mysqli->error);
+                            }
+
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 3,3");
+                            $row = $result->fetch_assoc();
+                            echo "<b>$row[name]: </b>";
+                            print_r($row['message']);
+                            echo '<br>';
+                            print_r($row['time']);
+                            ?>
                         </div>
                     </div>
                 </div>
