@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->
     <link rel="stylesheet" href="./style.css">
+    
 
 </head>
 
@@ -180,13 +181,10 @@
                                 die("SQL error: " . $mysqli->error);
                             }
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1");
-
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name] </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
-
+                            echo "<div class = 'updates'><b>$row[name]<br><div style='font-weight:lighter'>$row[message]<br><font color='purple'>$row[time]</font><br></div></b></div>";
+                            echo "<br>"
+                        
                             ?>
                         </div>
                     </div>
@@ -205,10 +203,8 @@
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1,1");
 
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name]  </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
+                            echo "<div class = 'updates'><b>$row[name]<br><div style='font-weight:lighter'>$row[message]<br><font color='purple'>$row[time]</font><br></div></b></div>";
+                            echo "<br>"
                             ?>
                         </div>
                     </div>
@@ -226,10 +222,7 @@
 
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 2,1 ");
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name]  </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
+                            echo "<div class = 'updates'><b>$row[name]<br><div style='font-weight:lighter'>$row[message]<br><font color='purple'>$row[time]</font><br></div></b></div>";
                             ?>
                         </div>
                     </div>
