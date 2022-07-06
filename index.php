@@ -38,7 +38,7 @@
                     <span class="material-icons-sharp">insights</span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="message.html">
+                <a href="message.php">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
@@ -168,10 +168,7 @@
                 <h2>Recent-Updates</h2>
 
                 <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/profile-3.jpg" alt="">
-                        </div>
+                    <div class="message">
                         <div class="message">
                             <?php
                             $mysqli = require __DIR__ . "/database.php";
@@ -183,20 +180,19 @@
                                 die("SQL error: " . $mysqli->error);
                             }
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1");
+
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name]: </b>";
+                            echo "<b>$row[name] </b>";
                             print_r($row['message']);
                             echo '<br>';
-                            print_r($row['time']);
+                            echo"<font color='purple'>$row[time]</font>"
+
                             ?>
                         </div>
                     </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/profile-4.jpg" alt="">
-                        </div>
+                    <div class="message">
                         <div class="message">
-                        <?php
+                            <?php
                             $mysqli = require __DIR__ . "/database.php";
                             $sql = "INSERT INTO message (name, message, time)
                             VALUES (?,?,?)";
@@ -207,20 +203,18 @@
                             }
 
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1,1");
+
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name]: </b>";
+                            echo "<b>$row[name]  </b>";
                             print_r($row['message']);
                             echo '<br>';
-                            print_r($row['time']);
+                            echo"<font color='purple'>$row[time]</font>"
                             ?>
                         </div>
                     </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./images/profile-1.jpg" alt="">
-                        </div>
+                    <div class="message">
                         <div class="message">
-                        <?php
+                            <?php
                             $mysqli = require __DIR__ . "/database.php";
                             $sql = "INSERT INTO message (name, message, time)
                             VALUES (?,?,?)";
@@ -232,10 +226,10 @@
 
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 2,1 ");
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name]: </b>";
+                            echo "<b>$row[name]  </b>";
                             print_r($row['message']);
                             echo '<br>';
-                            print_r($row['time']);
+                            echo"<font color='purple'>$row[time]</font>"
                             ?>
                         </div>
                     </div>
