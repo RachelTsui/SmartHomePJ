@@ -1,10 +1,8 @@
 <?php
-// $test1=$_POST["test1"];
-// $test2=$_POST["test2"];
-// echo $test1;
+
 
 $mysqli = require __DIR__ . "/themedatabase.php";
-$sql="INSERT INTO theme (theme_id,theme_name,device_id,onTime,offTime,theme_description,place_select)
+$sql="INSERT INTO theme (theme_id,theme_name,device_select,onTime,offTime,theme_description,place_select)
       VALUES(?,?,?,?,?,?,?)";
 
 $stmt = $mysqli->stmt_init();
@@ -12,14 +10,14 @@ if(!$stmt->prepare($sql)){
     die("SQL error:".$mysqli->error);
 }
 // $place_sel=@$_POST["place_select"]
-$stmt->bind_param("isissss",
+$stmt->bind_param("issssss",
                    $_POST["theme_id"],
                    $_POST["theme_name"],
-                   $_POST["device_id"],
+                   $_POST["device_select"],
                    $_POST["onTime"],
                    $_POST["offTime"],
                    $_POST["theme_description"],
-                   $_POST['place']
+                   $_POST["place_select"]
                  
 );
 if($stmt->execute()){
