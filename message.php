@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Dashboard using HTML</title>
     <!-- MATERIALICONS  -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->
-    
+
     <link rel="stylesheet" href="./theme.css">
     <script src="./theme.js"></script>
 </head>
@@ -77,19 +75,19 @@
                 <p class="themetext" id="themeletter"></p>
             </div>-->
             <form action="mess.php" method="post">
-                
+
                 <div class="themepallete">
                     <div class=="theme">
                         <label for="theme" class="text-muted">What's your name</label>
                         <div>
                             <input type="usr_id" id="usr_id" name="usr_id">
-                        </div> 
+                        </div>
                     </div>
                     <div class=="theme">
                         <label for="theme" class="text-muted">What do you wang to say</label>
                         <div>
                             <input type="mess" id="mess" name="mess">
-                        </div> 
+                        </div>
                     </div>
                     <button>send</button>
                 </div>
@@ -104,13 +102,20 @@
                         if (!$stmt->prepare($sql)) {
                             die("SQL error: " . $mysqli->error);
                         }
-                        $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1");
 
-                        $row = $result->fetch_assoc();
-                        echo "<b>$row[name] </b>";
-                        print_r($row['message']);
-                        echo '<br>';
-                        echo"<font color='purple'>$row[time]</font>"
+
+                        $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit $i,1");
+                            $row = $result->fetch_assoc();
+                            echo "<b>$row[name] </b>";
+                            print_r($row['message']);
+                            echo '<br>';
+                            echo "<font color='purple'>$row[time]</font>";
+                            echo '<br>';
+                        }
 
                         ?>
                     </div>
@@ -125,7 +130,7 @@
 </html>
 
 <script>
-    document.onkeydown = function (e) {
+    document.onkeydown = function(e) {
         if ((e || event).keyCode == 13) {
 
             var message = document.getElementById("message").value;
