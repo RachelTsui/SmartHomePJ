@@ -12,7 +12,7 @@ if (!$stmt->prepare($sql)) {
 }
 
 date_default_timezone_set('RPC'); //将默认时区调回为北京时间
-$time = date('H:i:s',time()); //输出指定时区当前时间
+$time = date('Y/m/d H:i:s'); //输出指定时区当前时间
         
 
 $stmt->bind_param(

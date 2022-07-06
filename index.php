@@ -182,8 +182,7 @@
                             if (!$stmt->prepare($sql)) {
                                 die("SQL error: " . $mysqli->error);
                             }
-
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 1,1");
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1");
                             $row = $result->fetch_assoc();
                             echo "<b>$row[name]: </b>";
                             print_r($row['message']);
@@ -207,7 +206,7 @@
                                 die("SQL error: " . $mysqli->error);
                             }
 
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 2,2");
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1,1");
                             $row = $result->fetch_assoc();
                             echo "<b>$row[name]: </b>";
                             print_r($row['message']);
@@ -231,7 +230,7 @@
                                 die("SQL error: " . $mysqli->error);
                             }
 
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time limit 3,3");
+                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 2,1 ");
                             $row = $result->fetch_assoc();
                             echo "<b>$row[name]: </b>";
                             print_r($row['message']);
