@@ -267,13 +267,6 @@ main .insights > div span{
     font-size: 2rem;
 }
 
-main .insights > div.health span{
-    background: var(--color-success);
-}
-
-main .insights > div.alert span{
-    background: var(--color-danger);
-}
 main .insights > div.happy span{
     background: rgb(237, 254, 0);
 }

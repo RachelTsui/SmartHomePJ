@@ -61,28 +61,58 @@
                 <p class="greeting">Go have a look at the </p>
             
             <div class="insights">
-                <div class="pattern1">
-                    <span class="material-icons-outlined">router</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>加速器模式 <br></h3>
-                            
+            <?PHP
+                $FamilyId = 123;////////////////////////////////////////
+                $ID = 1;        ////////////////////////////////////////
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                $mysqli = require __DIR__ . "/database.php";
+
+                $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
+                $row = $result->fetch_assoc();
+                    
+                switch($row["Kind"]) {
+                    case "router":
+                        $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        echo $num;
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID) limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'happy'>
+                <span class='material-icons-outlined'>router</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>WIFI:";
+                            if ($row['WIFI'] == 1)
+                                $out = "OPEN";
+                            else
+                                $out = "CLOSE";
+                        echo "
+                            <b>$out</b><br></h3>
+                            <h3>Accerelator:";
+                            if ($row['Accerelator'] == 1)
+                                $out = "OPEN";
+                            else
+                                $out = "CLOSE";
+                        echo "
+                            <b>$out</b><br></h3>
+                            <h3>Light:";
+                            if ($row['Light'] == 1)
+                                $out = "OPEN";
+                            else
+                                $out = "CLOSE";
+                        echo "
+                            <b>$out</b><br></h3>
                         </div>
                     </div>
-                    <small class="text-muted">
-                        <b>加速器</b>
-                        &nbsp;&nbsp;&nbsp;
-                        <a>开启 <br> </a>
-                    </small>
-                                        <small class="text-muted">
-                        <b>灯光</b>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a>关闭 <br></a>
-                    </small>
-                                    </div>
-
-                
-
+                </div>";}
+                    break;
+                }
+            ?>
                 <div class="add">
                     <a href="./addpattern.html">
                         <span class="material-icons-sharp">add_circle</span>
@@ -92,6 +122,7 @@
                         </div>
                     </a>
                 </div>
+            </div>
 
             </div>
         </main>
