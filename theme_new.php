@@ -8,9 +8,8 @@
     <!-- MATERIALICONS  -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->
-
-    <link rel="stylesheet" href="./theme.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./theme.css">
 
     <script src="./theme.js"></script>
 
@@ -69,7 +68,6 @@
 
             <div class="insights" id>
                 <div class="themepallete" style="font-size: 18px; width:800px">
-
                     <form action="theme.php" method="post">
                         <div>
                             <label for="theme_id">theme_id</label>
@@ -122,20 +120,23 @@
                 </div>
                 <!-- end of p4 -->
             </div>
-            <div class="themepallete" id="hello">
-                <p class="themetext" id="themeletter">This is your themes</p>
-                <?php
-                $mysqli = require __DIR__ . "/database.php";
-                $stmt = $mysqli->stmt_init();
+            <div class="themepallete" id style="width:800px">
+                <div class="message" style="font-size: 10px">
 
-                $result = mysqli_query($mysqli, "SELECT * FROM theme ORDER BY theme_id DESC");
-                $num    = mysqli_num_rows($result);
-                $i = 0;
+                    <p class="themetext" id="themeletter">This is your themes</p>
+                    <?php
+                    $mysqli = require __DIR__ . "/database.php";
+                    $stmt = $mysqli->stmt_init();
 
-                for ($i = 0; $i < $num; $i++) {
-                    $result = mysqli_query($mysqli, "SELECT * FROM theme ORDER BY theme_id DESC limit $i,1");
-                    $row = $result->fetch_assoc();
-                    echo " <form action='theme_set.php' method='post'>
+                    $result = mysqli_query($mysqli, "SELECT * FROM theme ORDER BY theme_id DESC");
+                    $num    = mysqli_num_rows($result);
+                    $i = 0;
+
+                    for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM theme ORDER BY theme_id DESC limit $i,1");
+                        $row = $result->fetch_assoc();
+                        echo " 
+                        <form action='theme_set.php' method='post'>
                         <div class = 'themepallete'>
                         <b>
                         $row[theme_name]
@@ -146,17 +147,19 @@
                         <br>
                         state: $row[theme_state]
                         <br>
-                        </b>
-                        </div>
+                        </b>         
                         <input type='submit' name='theme_state' value='$row[theme_state]' >
-                        <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>
+                        <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>  
+                        </div>
                         </form>
                         ";
-                }
-                ?>
-                <!--<form action='theme_set.php' method='post'>
+                    }
+                    ?>
+                    <!--<form action='theme_set.php' method='post'>
                     <input type='submit' name='formSubmit' />
                 </form>-->
+
+                </div>
             </div>
 
         </main>
