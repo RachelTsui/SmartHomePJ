@@ -24,7 +24,7 @@
                 </div>  
             </div>
             <div class="sidebar">
-                <a href="./index.html"  >
+                <a href="./indexH.php"  >
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
@@ -63,14 +63,18 @@
             
             <div class="insights" id="">
                 <div class="device">
-                    <form action = "process-addeq.php" method="post">
-                        <div>
-                            <label for="ID" class="text-muted">Please input your equipment ID <br></label>
-                            <input type="number" id="ID" name="ID" required="" style="font-size:20px;">
-                        </div>
+                    <form action = "addeq.php" method="post">
+                    <div>
+                        <label for="ID" class="text-muted">Please input your equipment ID <br></label>
+                        <input type="number" id="ID" name="ID" required="" style="font-size:20px;">
+                    </div>
                     <div>
                         <label for="Name" class="text-muted"><br>Please input your equipment name <br></label>
                         <input type="text" id="Name" name="Name" required="" style="font-size:20px;">
+                    </div>
+                    <div>
+                        <label for="Date" class="text-muted"><br>Please input your equipment added time e.g.20220709<br></label>
+                        <input type="date" id="Date" name="Date" required="" style="font-size:20px;">
                     </div>
                     <div>
                         <label for="Cycle" class="text-muted"><br>Please input your equipment maintenance cycle<br></label>
@@ -87,7 +91,7 @@
                         <label for="Kind" class="text-muted"><br>Please choose your equipment kind<br></label>
                         <select type="number" id="Kind" name="Kind"style="font-size:20px;">
                             <option value='电视'>电视</option>
-                            <option value='路由器'>路由器</option>
+                            <option value='router'>router</option>
                             <option value='灯'>灯</option>
                         </select>
                     </div>
@@ -102,25 +106,3 @@
     </div>
 </body>
 </html>
-
-<script>
-    document.onkeydown = function(e){
-        if((e||event).keyCode==13){
-            var devices = document.getElementById("deviceselect").value;
-            var onTime = document.getElementById("onTime").value;
-            var offTime = document.getElementById("offTime").value;
-            var place = document.getElementById("place").value;
-            var theme = document.getElementById("theme").value;
-            var board = document.querySelector("#hello")
-            var message = "Mode: "+ theme + " - The " + devices + " will be turned on at " + onTime +" and turned of at " + offTime;
-            var themeletter = document.createElement("div");
-            themeletter.classList.add("themetext");
-
-            var themes = document.createElement("div");
-            themes.classList.add("themepallete");
-            themes.innerText = message;
-            themes.appendChild(themeletter);
-            board.appendChild(themes);
-        }
-    }
-</script>
