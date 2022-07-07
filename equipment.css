@@ -54,6 +54,25 @@ body{
     gap: 1.8rem;
     grid-template-columns: 14rem auto 23rem;
 }
+
+/* .container:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  .container {
+    padding-left: 10px;
+  }
+  .container > div {
+    float: left;
+    height: 100px;
+    width: 1200px;
+    margin: 10px 100px 10px 0;
+    background: lightblue;
+  } */
+
 a{
     color: var(--color-dark);
 }
