@@ -42,6 +42,6 @@ while ($row = mysqli_fetch_array($result)) {
 }
 echo "</table>";
 
-header("Location: index.php");
+header("Location: message.php");
 
 ?>

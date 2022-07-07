@@ -10,6 +10,7 @@
     <!-- STYLESHEET -->
 
     <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="./theme.js"></script>
 </head>
 
@@ -92,7 +93,6 @@
                     <button>send</button>
                 </div>
                 <div class="themepallete">
-                    <div class="theme">
                         <?php
                         $mysqli = require __DIR__ . "/database.php";
                         $sql = "INSERT INTO message (name, message, time)
@@ -107,18 +107,17 @@
                         $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC");
                         $num    = mysqli_num_rows($result);
                         $i = 0;
+                        
+                        
+                        
                         for ($i = 0; $i < $num; $i++) {
                             $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit $i,1");
                             $row = $result->fetch_assoc();
-                            echo "<b>$row[name] </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo "<font color='purple'>$row[time]</font>";
-                            echo '<br>';
+                            echo "<div class = 'themepallete'><b>$row[name]<br><div style='font-weight:lighter'>$row[message]</div><font color='purple'>$row[time]</font><br></b></div>";
+                            
                         }
-
+                        
                         ?>
-                    </div>
                 </div>
 
             </form>
