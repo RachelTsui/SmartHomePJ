@@ -6,7 +6,7 @@
     <!-- MATERIALICONS  -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->  
-    <link rel="stylesheet" href="./pattern.css">
+    <link rel="stylesheet" href="./addpattern.css">
 
 </head>
 <body>
@@ -23,11 +23,11 @@
                 </div>  
             </div>
             <div class="sidebar">
-                <a href="./index.html">
+                <a href="./indexH.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html" class="active">
+                <a href="./equipments.php" class="active">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -61,41 +61,39 @@
                 <p class="greeting">Go have a look at the </p>
             
             <div class="insights">
-                <div class="pattern1">
-                    <span class="material-icons-outlined">router</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>加速器模式 <br></h3>
-                            
-                        </div>
+                <div class="device">
+                <form action = "addpattern.php" method="post">
+                    <div>
+                        <label for="Name" class="text-muted">Please input your pattern name <br></label>
+                        <input type="text" id="Name" name="Name" required="" style="font-size:20px;">
                     </div>
-                    <small class="text-muted">
-                        <b>加速器</b>
-                        &nbsp;&nbsp;&nbsp;
-                        <a>开启 <br> </a>
-                    </small>
-                                        <small class="text-muted">
-                        <b>灯光</b>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a>关闭 <br></a>
-                    </small>
-                                    </div>
-
-                
-
-                <div class="add">
-                    <a href="./addpattern.html">
-                        <span class="material-icons-sharp">add_circle</span>
-                        <div class="middle">
-                            <div class="middle">
-                            </div>
-                        </div>
-                    </a>
+                    <?php
+                        $FamilyId = 123;////////////////////////////////////////
+                        $ID = 1;        ////////////////////////////////////////
+                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                        $mysqli = require __DIR__ . "/database.php";
+        
+                        $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
+                        $row = $result->fetch_assoc();
+                            
+                        switch($row["Kind"]) {
+                            case "router":
+                                echo "
+                                <div>
+                                <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label>
+                                    <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>WIFI<br>
+                                    <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>Accerelator<br>
+                                    <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>Light<br>
+                                </div>";
+                                break;
+                            }
+                        echo '<button>Submit</button>'
+                    ?>
+                    </div>
                 </div>
-
+                </form>
             </div>
         </main>
     </div>
-
-
-</body></html>
+</body>
+</html>

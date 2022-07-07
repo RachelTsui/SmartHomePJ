@@ -38,7 +38,7 @@
                     <span class="material-icons-sharp">insights</span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="message.php">
+                <a href="message.html">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
@@ -166,9 +166,11 @@
             </div>
             <div class="recent-updates">
                 <h2>Recent-Updates</h2>
-
                 <div class="updates">
-                    <div class="message">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-3.jpg" alt="">
+                        </div>
                         <div class="message">
                             <?php
                             $mysqli = require __DIR__ . "/database.php";
@@ -179,58 +181,28 @@
                             if (!$stmt->prepare($sql)) {
                                 die("SQL error: " . $mysqli->error);
                             }
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1");
 
-                            $row = $result->fetch_assoc();
-                            echo "<b>$row[name] </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
-
+                            $result = mysqli_query($mysqli, "SELECT message FROM message");
+                            echo $message;
                             ?>
                         </div>
                     </div>
-                    <div class="message">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-4.jpg" alt="">
+                        </div>
                         <div class="message">
-                            <?php
-                            $mysqli = require __DIR__ . "/database.php";
-                            $sql = "INSERT INTO message (name, message, time)
-                            VALUES (?,?,?)";
-                            $stmt = $mysqli->stmt_init();
-
-                            if (!$stmt->prepare($sql)) {
-                                die("SQL error: " . $mysqli->error);
-                            }
-
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 1,1");
-
-                            $row = $result->fetch_assoc();
-                            echo "<b>$row[name]  </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
-                            ?>
+                            <p><b>sql: </b>Add a new Equipment: Air Filter Add a new Equipment: Air FilterAdd a new Equipment: Air FilterAdd a new Equipment: Air Filter</p>
+                            <small class="text-muted">2 mins ago</small>
                         </div>
                     </div>
-                    <div class="message">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profile-1.jpg" alt="">
+                        </div>
                         <div class="message">
-                            <?php
-                            $mysqli = require __DIR__ . "/database.php";
-                            $sql = "INSERT INTO message (name, message, time)
-                            VALUES (?,?,?)";
-                            $stmt = $mysqli->stmt_init();
-
-                            if (!$stmt->prepare($sql)) {
-                                die("SQL error: " . $mysqli->error);
-                            }
-
-                            $result = mysqli_query($mysqli, "SELECT * FROM message ORDER BY time DESC limit 2,1 ");
-                            $row = $result->fetch_assoc();
-                            echo "<b>$row[name]  </b>";
-                            print_r($row['message']);
-                            echo '<br>';
-                            echo"<font color='purple'>$row[time]</font>"
-                            ?>
+                            <p><b>ccj: </b>Add a new Equipment: Air Filter Add a new Equipment: Air FilterAdd a new Equipment: Air FilterAdd a new Equipment: Air Filter</p>
+                            <small class="text-muted">2 mins ago</small>
                         </div>
                     </div>
                 </div>

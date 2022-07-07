@@ -52,8 +52,27 @@ body{
     margin: auto;
     background:var(--color-background);
     gap: 1.8rem;
-    grid-template-columns: 14rem auto 23rem;
+    grid-template-columns: 20rem;
 }
+
+/* .container:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  .container {
+    padding-left: 10px;
+  }
+  .container > div {
+    float: left;
+    height: 100px;
+    width: 1200px;
+    margin: 10px 100px 10px 0;
+    background: lightblue;
+  } */
+
 a{
     color: var(--color-dark);
 }
@@ -242,7 +261,7 @@ main .greeting{
 }
 main .insights{
     display: grid;
-    grid-template-columns: repeat(4, 19rem);
+    grid-template-columns: repeat(4, 20rem);
     gap: 1.6rem;
 }
 

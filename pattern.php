@@ -6,7 +6,7 @@
     <!-- MATERIALICONS  -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->  
-    <link rel="stylesheet" href="./addpattern.css">
+    <link rel="stylesheet" href="./pattern.css">
 
 </head>
 <body>
@@ -23,11 +23,11 @@
                 </div>  
             </div>
             <div class="sidebar">
-                <a href="./index.html">
+                <a href="./indexH.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html" class="active">
+                <a href="./equipments.php" class="active">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -61,39 +61,41 @@
                 <p class="greeting">Go have a look at the </p>
             
             <div class="insights">
-                <div class="pattern1">
-                    <span class="material-icons-outlined">router</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>加速器模式 <br></h3>
-                            
+            <?PHP
+                $FamilyId = 123;
+                $ID = 1;
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                $mysqli = require __DIR__ . "/database.php";
+
+                $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
+                $row = $result->fetch_assoc();
+                    
+                switch($row["Kind"]) {
+                    case "router":
+                        $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID) ORDER BY PatternID limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'euqipments'>
+                <span class='material-icons-outlined'>tv</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>WIFI:<b>$row[WIFI]</b><br></h3>
+                            <h3>Accerelator:<b>$row[Accelerator]</b><br></h3>  
+                            <h3>Light:<b>$row[Light]</b><br></h3>
                         </div>
                     </div>
-                    <small class="text-muted">
-                        <b>加速器</b>
-                        &nbsp;&nbsp;&nbsp;
-                        <a>开启 <br> </a>
-                    </small>
-                    <small class="text-muted">
-                    <b>灯光</b>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a>关闭 <br></a>
-                    </small>
-                </div>
-                <div class="device">
-                    <label for="inp_eq_name" class="text-muted">Please input your pattern name <br> </label>
-                    <input id="name" required="" style="font-size:20px;">
-                    <label for="inp_eq_state" class="text-muted"><br><br>Please choose your equipment work state<br></label>
-                    <select id="stateselect" style="font-size:20px;">
-                            <option value="llight">灯光</option>
-                            <option value="fan">加速器</option>
-                        </select><div>
-                        
-                    </div>
-                </div>
-
-
+                </div>";}
+                    break;
+                }
+            ?>
                 <div class="add">
+                    <a href="./addpatternH.php">
                         <span class="material-icons-sharp">add_circle</span>
                         <div class="middle">
                             <div class="middle">
@@ -101,6 +103,7 @@
                         </div>
                     </a>
                 </div>
+            </div>
 
             </div>
         </main>
