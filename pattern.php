@@ -74,7 +74,6 @@
                     case "router":
                         $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID)");
                         $num    = mysqli_num_rows($result);
-                        echo $num;
                         $i = 0;
                         for ($i = 0; $i < $num; $i++) {
                         $result = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID = $ID) limit $i,1");
