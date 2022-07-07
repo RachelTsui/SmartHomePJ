@@ -1,44 +1,64 @@
-<?php
+<?php 
     $arr = array(
-        'tv'=>array(),
+        '电视'=>array(),
         'router'=>array('Accelerator','WIFI', 'Light'),
-        'lamp'=>array('normal','bright','dark')
-        'curtain'=>array('thin','thick'),
-        'fan'=>array('rotate','powerful','normal','weak'),
+        '灯'=>array('正常','明亮','暗色')
     );
     $FamilyId = 123;
-
+    $ID = 1;
     $mysqli = require __DIR__ . "/database.php";
     $con=mysqli_connect("localhost","root","000000","smarthouse");
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $mysqli = require __DIR__ . "/database.php";
 
-    $sql = "INSERT INTO Equipment(FamilyID, ID, Name, Date, Cycle, Battery, Kind)
-        VALUE ('$FamilyId',?,?,?,?,?,?)";
-
-    $stmt = $mysqli->stmt_init();
-    if(! $stmt->prepare($sql)){
-        die("SQL error: " . $mysqli->error);
-    }
-    $stmt->bind_param("issiis",$_POST["ID"],
-                              $_POST["Name"],
-                              $_POST["Date"],
-                              $_POST["Cycle"],
-                              $_POST["Battery"],
-                              $_POST["Kind"]);
-    switch($_POST["Kind"]){
+    $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
+    $row = $result->fetch_assoc();     
+    switch($row["Kind"]) {
         case "router":
-            $sql2 = "INSERT INTO router(FamilyID, ID, PatternID)
-                    VALUE ('$FamilyId', ".$_POST["ID"].",1)";
-            echo $sql2;
-            mysqli_query($con, $sql2) or die (mysqli_error());
+            $result = mysqli_query($mysqli, "SELECT * FROM router");
+            $num    = mysqli_num_rows($result) + 1;
+            $WIFI="CLOSE";
+            $Accelerator="CLOSE";
+            $Light="CLOSE";
+            
+            $value = $_POST['checkbox'];
+            foreach($value as $onevalue){
+                switch($onevalue){
+                    case 1:
+                        $WIFI="OPEN";
+                        break;
+                    case 2:
+                        $Accelerator="OPEN";
+                        break;
+                    case 3:
+                        $Light="OPEN";
+                        break;
+                }
+            }
+
+            print_r($_POST);
+            
+            print_r($FamilyId);
+            print_r($ID);
+            print_r(++$num);
+            print_r($_POST['Name']) ;
+            print_r($WIFI);
+            print_r($Accelerator);
+            print_r($Light);
+            $sql = "INSERT INTO router(FamilyID, ID, PatternID, Name, WIFI, Accelerator, Light)
+                    VALUE ('$FamilyId',$ID,$num,'$_POST[Name]', '$WIFI', '$Accelerator', '$Light')";
+            mysqli_query($con, $sql) or die (mysqli_error());
+            $sql2 = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)
+                    VALUE ('$FamilyId',$ID,$num,?)";
+            $stmt = $mysqli->stmt_init();
+            $stmt->prepare($sql2);
+            $stmt->bind_param("s",$_POST["Name"]);
+            $stmt->execute();
             break;
-    }
-    if($stmt->execute()){
-        echo"create successful!";
-    }else{
-        die($mysqli->error ." " . $mysqli->errno);
-    }
+        }
+        
     //print_r($_POST);
-    header("Location: equipments.php");
+    header("Location: pattern.php");
     
     
     // print_r($_POST); 

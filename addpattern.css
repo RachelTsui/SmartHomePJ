@@ -25,7 +25,7 @@
 }
 
 *{
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
     outline: 0;
     appearance: none;
@@ -33,6 +33,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    -webkit-appearance: checkbox;
 }
 html{
     font-size: 14px;
