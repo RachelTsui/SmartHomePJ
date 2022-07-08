@@ -148,7 +148,9 @@
                 </div>
 
             </div> -->
+            <form action = "pattern.php" method="POST">
             <div class='insights' style='grid-template-columns: repeat(4, 20rem)'>
+            
             <?php
                 $FamilyId = 123;
 
@@ -162,26 +164,27 @@
                     $row = $result->fetch_assoc();
                     // <form action="equip.php" method="post">
                     echo "
-                        <div class='equipment'>
+                        <div class='equipment'> 
+                            
                             <span class='material-icons-sharp'>tv </span>
                             <div class='middle'>
                                 <div class='left'>
                                     <h3>$row[Name]</h3>
-                                    <h1 class='success'>Open</h1>
-                                    <small class='text-muted'>Current Pattren: <b>模式1</b></small>
-                                    <div>
-                                        <details class='details'>
-                                            <p>Add data: $row[Data]</p>
-                                            <p>ID: $row[ID]</p>
-                                            <p>Repair Time: 134days</p>
-                                        </details>
-                                    </div>
+                                    <h1 class='success'>$row[Status]</h1>
+                                    <h3>Current Pattren: <b>$row[Pattern]</b></h3>
+                                    <h3><b>👇DETAILS</b></h3>
+                                    <h3>ID: <b>$row[ID]</b></h3>
+                                    <h3>Kind: <b>$row[Kind]</b></h3>
+                                    <h3>Add data: <b>$row[Date]</b></h3>
+                                    <h3>Repair Time: <b>134days</b></h3>
+
                                 </div>
-                        </div>
-                    </div>";
-                   // </form>
-                }
+                            </div>
+                            <button name='choose' id='choose' value=$row[ID]>Choose pattern</button>
+                        </div>";
+                }  
             ?>
+            
             <div class="add" align="center" >
                     <a href="./addeq.html">
                         <span class="material-icons-sharp">add_circle</span>
@@ -190,8 +193,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
             </div>
+        </div>
+        </form>
         </main>
     </div>
 </body>

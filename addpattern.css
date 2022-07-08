@@ -34,6 +34,7 @@
     list-style: none;
     box-sizing: border-box;
     -webkit-appearance: checkbox;
+    font-size: large;
 }
 html{
     font-size: 14px;
@@ -98,6 +99,7 @@ small{
 
 .text-muted{
     color: var(--color-info-dark);
+    font-size: 18px;
 }
 
 p{

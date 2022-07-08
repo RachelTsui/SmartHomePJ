@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "smarthouse";
 $username = "root";
-$password = "123456";
+$password = "000000";
 
 $mysqli = mysqli_connect($host, $username, $password,$dbname);
 

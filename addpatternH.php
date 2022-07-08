@@ -6,7 +6,7 @@
     <!-- MATERIALICONS  -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->  
-    <link rel="stylesheet" href="./addpattern.css">
+    <link rel="stylesheet" href="./addeq.css">
 
 </head>
 <body>
@@ -80,12 +80,47 @@
                             case "router":
                                 echo "
                                 <div>
-                                <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label>
+                                <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
                                     <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>WIFI<br>
                                     <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>Accerelator<br>
                                     <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>Light<br>
                                 </div>";
                                 break;
+                                case "televison":
+                                    echo "
+                                    <div>
+                                    <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>Power<br>
+                       
+                                    </div>";
+                                    break;
+                                case "lamp":
+                                    echo "
+                                    <div>
+                                    <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'Normal<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>Bright<br>
+                                        <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>Dark<br>
+                                    </div>";
+                                    break;
+                                case "curtain":
+                                    echo "
+                                    <div>
+                                    <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>thin<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>thick<br>
+    
+                                    </div>";
+                                    break;
+                                case "fan":
+                                    echo "
+                                    <div>
+                                    <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>rotate<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>normal<br>
+                                        <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>weak<br>
+                                    </div>";
+                                    break;
                             }
                         echo '<button>Submit</button>'
                     ?>

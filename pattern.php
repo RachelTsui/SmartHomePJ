@@ -63,7 +63,7 @@
             <div class="insights">
             <?PHP
                 $FamilyId = 123;
-                $ID = 1;
+                $ID = $_POST["choose"];
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $mysqli = require __DIR__ . "/database.php";
 
@@ -88,6 +88,90 @@
                             <h3>WIFI:<b>$row[WIFI]</b><br></h3>
                             <h3>Accerelator:<b>$row[Accelerator]</b><br></h3>  
                             <h3>Light:<b>$row[Light]</b><br></h3>
+                        </div>
+                    </div>
+                </div>";}
+                    break;
+                    case "television":
+                        $result = mysqli_query($mysqli, "SELECT * FROM tv WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM tv WHERE (FamilyID = $FamilyId AND ID = $ID) ORDER BY PatternID limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'euqipments'>
+                <span class='material-icons-outlined'>tv</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>Power:<b>$row[Power]</b><br></h3>
+                            
+                        </div>
+                    </div>
+                </div>";}
+                    break;
+                    case "lamp":
+                        $result = mysqli_query($mysqli, "SELECT * FROM lamp WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM lamp WHERE (FamilyID = $FamilyId AND ID = $ID) ORDER BY PatternID limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'euqipments'>
+                <span class='material-icons-outlined'>tv</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>Normal:<b>$row[Normal]</b><br></h3>
+                            <h3>Bright:<b>$row[Bright]</b><br></h3>  
+                            <h3>Dark:<b>$row[Dark]</b><br></h3>
+                        </div>
+                    </div>
+                </div>";}
+                    break;
+                    case "curtain":
+                        $result = mysqli_query($mysqli, "SELECT * FROM curtain WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM curtain WHERE (FamilyID = $FamilyId AND ID = $ID) ORDER BY PatternID limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'euqipments'>
+                <span class='material-icons-outlined'>tv</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>thin:<b>$row[thin]</b><br></h3>
+                            <h3>thick:<b>$row[thick]</b><br></h3>  
+                            
+                        </div>
+                    </div>
+                </div>";}
+                    break;
+                    case "fan":
+                        $result = mysqli_query($mysqli, "SELECT * FROM fan WHERE (FamilyID = $FamilyId AND ID = $ID)");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                        $result = mysqli_query($mysqli, "SELECT * FROM fan WHERE (FamilyID = $FamilyId AND ID = $ID) ORDER BY PatternID limit $i,1");
+                        $row = $result->fetch_assoc();
+                        
+                echo "
+                <div class = 'euqipments'>
+                <span class='material-icons-outlined'>tv</span>
+                    <div class='middle'>
+                        <div class='left'>
+                            <h2>$row[Name]<br></h2>
+                            <h3>rotate:<b>$row[rotate]</b><br></h3>
+                            <h3>powerful:<b>$row[powerful]</b><br></h3>  
+                            <h3>normal:<b>$row[normal]</b><br></h3>
+                            <h3>weak:<b>$row[weak]</b><br></h3>
                         </div>
                     </div>
                 </div>";}
