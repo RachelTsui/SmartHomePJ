@@ -1,13 +1,18 @@
 <?php 
+    session_start();
+    
+    
     $FamilyId = 123;
-    $ID = 1;
+    $ID = $_SESSION["ID"];
+    
     $mysqli = require __DIR__ . "/database.php";
-    $con=mysqli_connect("localhost","root","000000","smarthouse");
+    $con=mysqli_connect("localhost","root","123456","smarthouse");
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = require __DIR__ . "/database.php";
 
     $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
-    $row = $result->fetch_assoc();     
+    $row = $result->fetch_assoc();
+    //echo $row["Kind"] ;
     switch($row["Kind"]) {
         case "router":
             $result = mysqli_query($mysqli, "SELECT * FROM router"); //选择路由表中所有元组
@@ -87,9 +92,13 @@
                         $Normal="OPEN";
                         break;
                     case 2:
+                        if($Normal=="OPEN")
+                            die("不允许同时选中多种亮度");
                         $Bright="OPEN";
                         break;
                     case 3:
+                        if($Normal=="OPEN" || $Bright=="OPEN")
+                            die("不允许同时选中多种亮度");
                         $Dark="OPEN";
                         break;
                 }
@@ -150,9 +159,13 @@
                         $powerful="OPEN";
                         break;
                     case 3:
+                        if($powerful=="OPEN")
+                            die("不允许同时选中多种强度");
                         $normal="OPEN";
                         break;
                     case 4:
+                        if($powerful=="OPEN" || $normal=="OPEN")
+                            die("不允许同时选中多种强度");
                         $weak="OPEN";
                         break;
                 }

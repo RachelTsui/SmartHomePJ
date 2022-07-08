@@ -36,7 +36,7 @@
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="./theme.html">
+                <a href="./theme_new.php">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>

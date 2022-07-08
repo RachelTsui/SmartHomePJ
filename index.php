@@ -70,7 +70,13 @@
                         <div class="left">
                             <a href="./equipments.php">
                                 <h3 >Total Number of Equipments</h3>
-                                <h1>4</h1>
+                                <?PHP
+                                    $FamilyId = 123;
+                                    $mysqli = require __DIR__ . "/database.php";
+                                    $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId)");
+                                    $num    = mysqli_num_rows($result);
+                                echo "<h1>$num</h1>";
+                                ?>
                             </a>
                         </div>
                     </div>
@@ -82,7 +88,18 @@
                     <div class="middle">
                         <div class="left">
                             <h3>health_and_safety</h3>
-                            <h1>ALL</h1>
+                            <?PHP
+                                    $mysqli = require __DIR__ . "/database.php";
+                                    $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (Status = 'Emergency')");
+                                    $nume    = mysqli_num_rows($result);
+                                    if($nume){
+                                        echo "<h1 style='color:red'>Please check</h1>";
+                                    }
+                                    else{
+                                        
+                                        echo "<h1>ALL good</h1>";
+                                    }
+                                ?>
                         </div>
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
@@ -91,10 +108,15 @@
                 <div class="alert">
                     <span class="material-icons-sharp">notifications</span>
                     <div class="middle">
-                        <div class="left">
-                            <h3>Alerts</h3>
-                            <h1>0</h1>
-                        </div>
+                    <a href="./report.php">
+                                <h3 >Alert</h3>
+                                <?PHP
+                                    $mysqli = require __DIR__ . "/database.php";
+                                    $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (Status = 'Emergency')");
+                                    $nume    = mysqli_num_rows($result);
+                                echo "<h1>$nume</h1>";
+                                ?>
+                            </a>
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
@@ -107,7 +129,8 @@
                 <thead>
                         <tr>
                             <th>Equip. Name</th>
-                            <th>Location</th>
+                            <th>Kind</th>
+                            <th>Pattern</th>
                             <th>Battery</th>
                             <th>Status</th>
                             <th></th>
@@ -119,13 +142,6 @@
 
                 $mysqli = require __DIR__ . "/database.php";
 
-                $sql = "INSERT INTO Equipment(FamilyID, ID, Name, Cycle, Battery, Kind)
-                    VALUE ('$FamilyId',?,?,?,?,?)";
-
-                $stmt = $mysqli->stmt_init();
-                if(! $stmt->prepare($sql)){
-                    die("SQL error: " . $mysqli->error);
-                }
                 $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId)");
                 $num    = mysqli_num_rows($result);
                 $i = 0;
@@ -143,6 +159,7 @@
                         <tr>
                             <td>$row[Name]</td> 
                             <td>$row[Kind]</td>
+                            <td>$row[Pattern]</td>
                             <td class='success'>$bat</td>
                             <td class='success'>$row[Status]</td>
                         </tr>

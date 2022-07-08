@@ -17,8 +17,8 @@ $stmt->bind_param("issssssss",
                    $_POST["offTime"],
                    $_POST["theme_description"],
                    $_POST["place_select"],
-                   $_POST["pattern"],
-                   $_POST["theme_state"]
+                   $_POST["theme_state"],
+                   $_POST["pattern"]
 );
 if($stmt->execute()){
     echo"create successful!";

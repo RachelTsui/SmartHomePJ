@@ -31,7 +31,7 @@
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="./theme.html">
+                <a href="./theme_new.php">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
@@ -58,17 +58,25 @@
         <main>
             <h1>Pattern</h1>
             
-                <p class="greeting">Go have a look at the </p>
-            
-            <div class="insights">
+                <p class="greeting">Go have a look at the pattern</p>
+            <form action = "choosePattern.php" method="POST">
+            <div class="insights" style="grid-template-columns: repeat(4, 21rem)">
             <?PHP
                 $FamilyId = 123;
-                $ID = $_POST["choose"];
+                session_start();
+                if(!empty($_POST)){
+                    $ID = $_POST["choose"];
+                    $_SESSION["ID"]=$ID;
+                } 
+                else
+                    $ID=$_SESSION["ID"];
+                //echo $ID;
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $mysqli = require __DIR__ . "/database.php";
 
                 $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
                 $row = $result->fetch_assoc();
+                $eqname=$row["Name"];
                     
                 switch($row["Kind"]) {
                     case "router":
@@ -84,12 +92,14 @@
                 <span class='material-icons-outlined'>tv</span>
                     <div class='middle'>
                         <div class='left'>
+                            <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
                             <h3>WIFI:<b>$row[WIFI]</b><br></h3>
                             <h3>Accerelator:<b>$row[Accelerator]</b><br></h3>  
                             <h3>Light:<b>$row[Light]</b><br></h3>
                         </div>
                     </div>
+                    <button name='choose' id='choose' value='$row[Name]'>Choose this</button>
                 </div>";}
                     break;
                     case "television":
@@ -105,11 +115,13 @@
                 <span class='material-icons-outlined'>tv</span>
                     <div class='middle'>
                         <div class='left'>
+                        <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
                             <h3>Power:<b>$row[Power]</b><br></h3>
                             
                         </div>
                     </div>
+                    <button name='choose' id='choose' value='$row[Name]'>Choose this</button>
                 </div>";}
                     break;
                     case "lamp":
@@ -125,12 +137,14 @@
                 <span class='material-icons-outlined'>tv</span>
                     <div class='middle'>
                         <div class='left'>
+                        <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
                             <h3>Normal:<b>$row[Normal]</b><br></h3>
                             <h3>Bright:<b>$row[Bright]</b><br></h3>  
                             <h3>Dark:<b>$row[Dark]</b><br></h3>
                         </div>
                     </div>
+                    <button name='choose' id='choose' value='$row[Name]'>Choose this</button>
                 </div>";}
                     break;
                     case "curtain":
@@ -146,12 +160,14 @@
                 <span class='material-icons-outlined'>tv</span>
                     <div class='middle'>
                         <div class='left'>
+                        <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
-                            <h3>thin:<b>$row[thin]</b><br></h3>
-                            <h3>thick:<b>$row[thick]</b><br></h3>  
+                            <h3>thin:<b>$row[Thin]</b><br></h3>
+                            <h3>thick:<b>$row[Thick]</b><br></h3>  
                             
                         </div>
                     </div>
+                    <button name='choose' id='choose' value='$row[Name]'>Choose this</button>
                 </div>";}
                     break;
                     case "fan":
@@ -167,18 +183,32 @@
                 <span class='material-icons-outlined'>tv</span>
                     <div class='middle'>
                         <div class='left'>
+                        <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
-                            <h3>rotate:<b>$row[rotate]</b><br></h3>
-                            <h3>powerful:<b>$row[powerful]</b><br></h3>  
-                            <h3>normal:<b>$row[normal]</b><br></h3>
-                            <h3>weak:<b>$row[weak]</b><br></h3>
+                            <h3>rotate:<b>$row[Rotate]</b><br></h3>
+                            <h3>powerful:<b>$row[Powerful]</b><br></h3>  
+                            <h3>normal:<b>$row[Normal]</b><br></h3>
+                            <h3>weak:<b>$row[Weak]</b><br></h3>
                         </div>
                     </div>
+                    <button name='choose' id='choose' value='$row[Name]'>Choose this</button>
                 </div>";}
                     break;
                 }
+                echo "
+                <div class='add'>
+                    <a href='./addpatternH.php'>
+                        <span class='material-icons-sharp'>add_circle</span>
+                        <div class='middle'>
+                            <div class='middle'>
+                            </div>
+                        </div>
+                    </a>
+                </div>"
+
+//                <button name='choose' id='choose' value='$ID'>Choose pattern</button>
             ?>
-                <div class="add">
+                <!-- <div class="add">
                     <a href="./addpatternH.php">
                         <span class="material-icons-sharp">add_circle</span>
                         <div class="middle">
@@ -186,10 +216,11 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
 
             </div>
+            
         </main>
     </div>
 
