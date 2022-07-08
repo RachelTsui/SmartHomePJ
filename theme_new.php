@@ -69,22 +69,44 @@
             <div class="insights" id>
                 <div class="themepallete" style="font-size: 18px; width:800px">
                     <form action="theme.php" method="post">
-                        <div>
+                        <!-- <div>
                             <label for="theme_id">theme_id</label>
                             <input type="number" id="theme_id" name="theme_id">
-                        </div>
+                        </div> -->
                         <div>
                             <label for="theme_name">theme_name</label>
                             <input type="text" id="theme_name" name="theme_name">
                         </div>
                         <label for="device_select">device_select</label>
                         <select type="text" name="device_select" id="device_select" style="font-size:18px;">
-                            <option value="XiaomiTV">XiaomiTV</option>
-                            <option value="Toothbrush">Toothbrush</option>
-                            <option value="Light">Light</option>
-                            <option value="DishWasher">Dish Washer</option>
-                        </select>
+                
+                            <?php
+                            session_start();
+                            $mysqli = require __DIR__ . "/database.php";
+                            $stmt = $mysqli->stmt_init();
 
+                            $result = mysqli_query($mysqli, "SELECT * FROM pattern ORDER BY PatternID DESC");
+                            $num    = mysqli_num_rows($result);
+                            $i = 0;
+
+                            // var_dump($num);exit;
+                             for ($i = 0; $i < $num; $i++) {
+                                $result = mysqli_query($mysqli, "SELECT * FROM pattern ORDER BY PatternID DESC limit $i,1");
+                                $row = $result->fetch_assoc();
+                                 echo " 
+                                     <option name = 'pattern' value = '$row[Name]'>$row[Name]</option>
+                                        ";
+
+                                 $pattern = $row['Name'];
+                             }
+                            ?>
+                        </select>
+                       
+                        <!-- <script>
+                            var device_select = document.getElementById("device_select").value;
+                            console.log(device_select);
+                        </script> -->
+                        
                         <div>
                             <label for="onTime" class="text-muted">Please select the preferable <b>ON</b> time</label>
                             <input type="time" id="onTime" name="onTime" required style="font-size:18px;">
@@ -99,19 +121,30 @@
                             <label for="theme_description">theme_description</label>
                             <input type="text" id="theme_description" name="theme_description">
                         </div>
-                        <label for="place_select">place_select</label>
+                        <!-- <label for="place_select">place_select</label>
                         <select type="text" name="place_select" id="place_select" style="font-size:18px;">
                             <option value="Livingroom">Living Room</option>
                             <option value="Bathroom">Bathroom</option>
                             <option value="Kitchen">Kitchen</option>
                             <option value="Diningroom">Dining Room</option>
                             <option value="Balcony">Balcony</option>
-                        </select>
+                        </select> -->
+                        <div>
+                            <label for="theme_state">pattern</label>
+                            <select type="text" name="pattern" id="pattern" style="font-size:18px;">
+                                <!-- <option value="on">ON</option>
+                                <option value="off">OFF</option> -->
+
+                                
+
+                            </select>
+                        </div>
                         <div>
                             <label for="theme_state">theme_state</label>
                             <select type="text" name="theme_state" id="theme_state" style="font-size:18px;">
                                 <option value="on">ON</option>
                                 <option value="off">OFF</option>
+
                             </select>
                         </div>
                         <button>submit</button>
@@ -120,6 +153,83 @@
                 </div>
                 <!-- end of p4 -->
             </div>
+
+            <div class="themepallete" id style="width:800px">
+                <div class="message" style="font-size: 10px">
+
+                    <p class="themetext" id="themeletter">Choose your themes</p>
+                    <div>
+                        <label for="theme_state">theme_state</label>
+                        <form action='aaa.php' method='post'>
+                            <select type="text" name="theme_state" id="theme_state" style="font-size:18px;">
+                                <?php
+                                $mysqli = require __DIR__ . "/database.php";
+                                $stmt = $mysqli->stmt_init();
+
+                                $result = mysqli_query($mysqli, "SELECT DISTINCT theme_name FROM theme ORDER BY theme_name DESC");
+                                $num    = mysqli_num_rows($result);
+                                $i = 0;
+                                for ($i = 0; $i < $num; $i++) {
+                                    $result = mysqli_query($mysqli, "SELECT DISTINCT theme_name FROM theme ORDER BY theme_name DESC limit $i,1");
+                                    $row = $result->fetch_assoc();
+                                    echo " 
+                                    <option name = 'pattern' value = '$row[theme_name]']'>$row[theme_name]</option>
+                                    ";
+                                }
+                                ?>
+                            </select>
+                            <button>submit</button>
+                        </form>
+                        <?php
+                        session_start();
+                        //var_dump($_SESSION["theme_state"]);
+
+                        $mysqli = require __DIR__ . "/database.php";
+                        $stmt = $mysqli->stmt_init();
+
+                        $result = mysqli_query($mysqli, "SELECT * FROM theme WHERE theme_name = '$_SESSION[theme_state]' ORDER BY theme_id DESC");
+                        $num    = mysqli_num_rows($result);
+                        $i = 0;
+                        for ($i = 0; $i < $num; $i++) {
+                            $result = mysqli_query($mysqli, "SELECT * FROM theme  WHERE theme_name = '$_SESSION[theme_state]' ORDER BY theme_id DESC limit $i,1");
+                            $row = $result->fetch_assoc();
+                            echo " 
+                            <form action='theme_set.php' method='post'>
+                            <div class = 'themepallete'>
+                            <b>
+                            $row[theme_name]
+                            <br>
+                            <div style='font-weight:lighter'>
+                            </div>
+                            onTime: $row[onTime]  offTime: $row[offTime]
+                            <br>
+                            state: $row[theme_state]
+                            <br>
+                            </b>         
+                            <input type='submit' name='theme_state' value='$row[theme_state]' >
+                            <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>  
+                            <input type='submit' name='delete' value='delete'>                      
+                            <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>  
+                            </div>
+                            </form>
+                            ";
+                        }
+
+
+
+                        ?>
+
+                    </div>
+
+
+
+                    <!--<form action='theme_set.php' method='post'>
+                    <input type='submit' name='formSubmit' />
+                </form>-->
+
+                </div>
+            </div>
+
             <div class="themepallete" id style="width:800px">
                 <div class="message" style="font-size: 10px">
 
@@ -149,6 +259,8 @@
                         <br>
                         </b>         
                         <input type='submit' name='theme_state' value='$row[theme_state]' >
+                        <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>  
+                        <input type='submit' name='delete' value='delete'>                      
                         <input type='hidden' name = 'theme_id' value = '$row[theme_id]'>  
                         </div>
                         </form>

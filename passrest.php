@@ -9,43 +9,46 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
     $user = $result->fetch_assoc();
 
     if($user){
-        if(password_verify($_POST["password"], $user["password_hash"])){
             session_start();
             session_regenerate_id();
-            $_SESSION= $user;
-            
-            header("Location: test.php");
+            $_SESSION["user_id"] = $user["id"];
+            header("Location: login.php");
             exit;
-        }
     }
     $is_valid = true;
 }
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Reset Password</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-    <h1>Login</h1>
+<h1>Password Reset</h1>
     <?php   if($is_valid): ?>
-        <em>Invalid login</em>
+        <em>You are not the user, please <a href="singup.html">sign up</a></em>
     <?php endif; ?>
-
     
-    <form method="post"> 
-        <label for="email">email</label>
-        <input type="email" id="email" name = "email">
+    <form action="process-pass.php" method="post">
+        <div>
+            <label for="email">email</label>
+            <input type="email" id="email" name = "email">
+        </div>
+        <div>
+            <label for="newpassword">New Password</label>
+            <input type="password" id="newpassword" name = "newpassword">
+        </div>
+        <div>
+            <label for="password_confirmation">Repeat Password</label>
+            <input type="password" id="password_confirmation" name = "password_confirmation">
         
-        <label for="password">Password</label>
-        <input type="password" id="password" name = "password">
+        </div>
+        <button>reset</button>
         
-        <button>Login</button>
     </form>
-    <p>Doesn't have an account? Go to <a href="./singup.html">sign up</a></p>
-    <p>Forget your password? Go to <a href="./passrest.php">reset your password</a></p>
 </body>
 </html>

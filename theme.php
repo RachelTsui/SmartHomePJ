@@ -1,15 +1,15 @@
 <?php
 
 $mysqli = require __DIR__ . "/themedatabase.php";
-$sql="INSERT INTO theme (theme_id,theme_name,device_select,onTime,offTime,theme_description,place_select,theme_state)
-      VALUES(?,?,?,?,?,?,?,?)";
+$sql="INSERT INTO theme (theme_id,theme_name,device_select,onTime,offTime,theme_description,place_select,theme_state,pattern)
+      VALUES(?,?,?,?,?,?,?,?,?)";
 
 $stmt = $mysqli->stmt_init();
 if(!$stmt->prepare($sql)){
     die("SQL error:".$mysqli->error);
 }
 // $place_sel=@$_POST["place_select"]
-$stmt->bind_param("isssssss",
+$stmt->bind_param("issssssss",
                    $_POST["theme_id"],
                    $_POST["theme_name"],
                    $_POST["device_select"],
@@ -17,6 +17,7 @@ $stmt->bind_param("isssssss",
                    $_POST["offTime"],
                    $_POST["theme_description"],
                    $_POST["place_select"],
+                   $_POST["pattern"],
                    $_POST["theme_state"]
 );
 if($stmt->execute()){

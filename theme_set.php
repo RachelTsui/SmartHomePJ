@@ -1,7 +1,7 @@
 <?php
 
 $mysqli = require __DIR__ . "/database.php";
-$sql = "INSERT INTO theme (theme_id,theme_name,device_select,onTime,offTime,theme_description,place_select,theme_state)
+$sql = "INSERT INTO theme (theme_name,device_select,onTime,offTime,theme_description,place_select,theme_state,pattern)
       VALUES(?,?,?,?,?,?,?,?)";
 $stmt = $mysqli->stmt_init();
 
@@ -20,7 +20,13 @@ if ($_POST['theme_state'] == "on") {
     $state = "on";
 }
 echo $state;
-$sql = "UPDATE theme SET theme_state = '$state' WHERE theme_id = $_POST[theme_id]";
+
+if($_POST['delete']!= NULL){
+    $sql = "DELETE FROM theme WHERE theme_id = $_POST[theme_id]";
+}else{
+    $sql = "UPDATE theme SET theme_state = '$state' WHERE theme_id = $_POST[theme_id]";
+}
+
 echo (int)$_POST["theme_id"];
 if ($mysqli->query($sql) === TRUE) {
     echo "Record updated successfully";
