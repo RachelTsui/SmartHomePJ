@@ -61,7 +61,7 @@
             
                 <p class="greeting" style="color: gray; font-size: 20px;">Please add your equipment </p>
             
-            <div class="insights" id="">
+            <div class="insights" style="grid-template-columns: repeat(4, 30rem)">
                 <div class="device">
                     <form action = "addeq.php" method="post">
                     <div>
@@ -82,7 +82,7 @@
                         <label for="Cycle" class="text-muted">days<br></label>
                     </div>
                     <div>
-                        <label for="Battery" class="text-muted"><br>Does your equipment require batteries<br></label>
+                        <label for="Battery" class="text-muted"><br>Does your equipment require batteries<br></label><br>
                             <input type="radio" name="Battery" value=1>Yes<br>
                             <input type="radio" name="Battery" value=0>No<br>
                     </div>

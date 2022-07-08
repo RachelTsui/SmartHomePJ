@@ -37,7 +37,7 @@
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="./theme.html">
+                <a href="./theme_new.php">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
@@ -148,8 +148,8 @@
                 </div>
 
             </div> -->
-            <form action = "pattern.php" method="POST">
-            <div class='insights' style='grid-template-columns: repeat(4, 20rem)'>
+            
+            <div class='insights' style='grid-template-columns: repeat(4, 21rem)'>
             
             <?php
                 $FamilyId = 123;
@@ -176,12 +176,70 @@
                                     <h3>ID: <b>$row[ID]</b></h3>
                                     <h3>Kind: <b>$row[Kind]</b></h3>
                                     <h3>Add data: <b>$row[Date]</b></h3>
-                                    <h3>Repair Time: <b>134days</b></h3>
+                                    <h3>Status: <b>$row[Status]</b></h3>
 
                                 </div>
                             </div>
-                            <button name='choose' id='choose' value=$row[ID]>Choose pattern</button>
+                            <form action = 'pattern.php' method='POST'>
+                            <button name='choose' id='choose' value=$row[ID]>Check pattern</button>
+                            </form>
+                            <form action = 'deleteEquipment.php' method='POST'>
+                            <button name='delete' id='delete' value=$row[ID]>Delete pattern</button>
+                            </form>
                         </div>";
+                        switch($row["Kind"]){
+                            case 'television':
+                                $result2 = mysqli_query($mysqli, "SELECT * FROM pattern WHERE (FamilyID = $FamilyId AND ID=$row[ID] AND PatternID=1)");
+                                $num2    = mysqli_num_rows($result2);
+                                if($num2 == 0) {
+                                    $result3 = mysqli_query($mysqli, "SELECT * FROM tv WHERE (FamilyID = $FamilyId AND ID=$row[ID]) limit 0, 1" );
+                                    $row3 = $result3->fetch_assoc();
+                                    $sql = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)VALUE ('$FamilyId', '$row[ID]', 1, '$row3[Name]')";
+                                    mysqli_query($mysqli, $sql) or die (mysqli_error());
+                                }
+                            break;
+                            case 'router':
+                                $result2 = mysqli_query($mysqli, "SELECT * FROM pattern WHERE (FamilyID = $FamilyId AND ID=$row[ID] AND PatternID=1)");
+                                $num2    = mysqli_num_rows($result2);
+                                if($num2 == 0) {
+                                    $result3 = mysqli_query($mysqli, "SELECT * FROM router WHERE (FamilyID = $FamilyId AND ID=$row[ID]) limit 0, 1" );
+                                    $row3 = $result3->fetch_assoc();
+                                    $sql = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)VALUE ('$FamilyId', '$row[ID]', 1, '$row3[Name]')";
+                                    mysqli_query($mysqli, $sql) or die (mysqli_error());
+                                }
+                            break;
+                            case 'lamp':
+                                $result2 = mysqli_query($mysqli, "SELECT * FROM pattern WHERE (FamilyID = $FamilyId AND ID=$row[ID] AND PatternID=1)");
+                                $num2    = mysqli_num_rows($result2);
+                                if($num2 == 0) {
+                                    $result3 = mysqli_query($mysqli, "SELECT * FROM lamp WHERE (FamilyID = $FamilyId AND ID=$row[ID]) limit 0, 1" );
+                                    $row3 = $result3->fetch_assoc();
+                                    $sql = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)VALUE ('$FamilyId', '$row[ID]', 1, '$row3[Name]')";
+                                    mysqli_query($mysqli, $sql) or die (mysqli_error());
+                                }
+                            break;
+                            case 'curtain':
+                                $result2 = mysqli_query($mysqli, "SELECT * FROM pattern WHERE (FamilyID = $FamilyId AND ID=$row[ID] AND PatternID=1)");
+                                $num2    = mysqli_num_rows($result2);
+                                if($num2 == 0) {
+                                    $result3 = mysqli_query($mysqli, "SELECT * FROM curtain WHERE (FamilyID = $FamilyId AND ID=$row[ID]) limit 0, 1" );
+                                    $row3 = $result3->fetch_assoc();
+                                    $sql = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)VALUE ('$FamilyId', '$row[ID]', 1, '$row3[Name]')";
+                                    mysqli_query($mysqli, $sql) or die (mysqli_error());
+                                }
+                            break;
+                            case 'fan':
+                                $result2 = mysqli_query($mysqli, "SELECT * FROM pattern WHERE (FamilyID = $FamilyId AND ID=$row[ID] AND PatternID=1)");
+                                $num2    = mysqli_num_rows($result2);
+                                if($num2 == 0) {
+                                    $result3 = mysqli_query($mysqli, "SELECT * FROM fan WHERE (FamilyID = $FamilyId AND ID=$row[ID]) limit 0, 1" );
+                                    $row3 = $result3->fetch_assoc();
+                                    $sql = "INSERT INTO pattern(FamilyID, ID, PatternID, Name)VALUE ('$FamilyId', '$row[ID]', 1, '$row3[Name]')";
+                                    mysqli_query($mysqli, $sql) or die (mysqli_error());
+                                }
+                            break;
+                        }
+
                 }  
             ?>
             
@@ -195,7 +253,6 @@
                     </a>
             </div>
         </div>
-        </form>
         </main>
     </div>
 </body>

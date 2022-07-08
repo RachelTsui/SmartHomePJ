@@ -245,7 +245,7 @@ main .greeting{
 }
 main .insights{
     display: grid;
-    grid-template-columns: repeat(4, 19rem);
+    grid-template-columns: repeat(4, 21rem);
     gap: 1.6rem;
 }
 

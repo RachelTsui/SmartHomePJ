@@ -6,7 +6,7 @@
     <!-- MATERIALICONS  -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
     <!-- STYLESHEET -->  
-    <link rel="stylesheet" href="./addeq.css">
+    <link rel="stylesheet" href="./addpattern.css">
 
 </head>
 <body>
@@ -31,7 +31,7 @@
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="./theme.html">
+                <a href="./theme_new.php">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
@@ -56,11 +56,11 @@
             </div>
         </aside>
         <main>
-            <h1>Pattern</h1>
+            <h1>Add Pattern</h1>
             
-                <p class="greeting">Go have a look at the </p>
+                <p class="greeting">Please add your pattern information </p>
             
-            <div class="insights">
+            <div class="insights" style="grid-template-columns: repeat(4, 26rem)">
                 <div class="device">
                 <form action = "addpattern.php" method="post">
                     <div>
@@ -68,12 +68,16 @@
                         <input type="text" id="Name" name="Name" required="" style="font-size:20px;">
                     </div>
                     <?php
+                        // include "aaa.php";
+                        // echo $testID;
                         $FamilyId = 123;////////////////////////////////////////
-                        $ID = 1;        ////////////////////////////////////////
+                        session_start();
+                        $ID=$_SESSION["ID"];
+                        //echo $ID;
                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                         $mysqli = require __DIR__ . "/database.php";
         
-                        $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId AND ID = $ID) limit 0, 1");
+                        $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = '".$FamilyId."' AND ID = '".$ID."') limit 0, 1");
                         $row = $result->fetch_assoc();
                             
                         switch($row["Kind"]) {
@@ -82,11 +86,11 @@
                                 <div>
                                 <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
                                     <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>WIFI<br>
-                                    <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>Accerelator<br>
-                                    <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>Light<br>
+                                    <input type='checkbox' name='checkbox[]' value=2 style='-webkit-appearance: checkbox'>Accerelator<br>
+                                    <input type='checkbox' name='checkbox[]' value=3 style='-webkit-appearance: checkbox'>Light<br>
                                 </div>";
                                 break;
-                                case "televison":
+                                case "television":
                                     echo "
                                     <div>
                                     <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
@@ -98,17 +102,17 @@
                                     echo "
                                     <div>
                                     <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
-                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'Normal<br>
-                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>Bright<br>
-                                        <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>Dark<br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>Normal<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style='-webkit-appearance: checkbox'>Bright<br>
+                                        <input type='checkbox' name='checkbox[]' value=3 style='-webkit-appearance: checkbox'>Dark<br>
                                     </div>";
                                     break;
                                 case "curtain":
                                     echo "
                                     <div>
                                     <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
-                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>thin<br>
-                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>thick<br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>Thin<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style='-webkit-appearance: checkbox'>Thick<br>
     
                                     </div>";
                                     break;
@@ -116,13 +120,14 @@
                                     echo "
                                     <div>
                                     <label for='switch' class='text-muted'><br>Choose your equipment switch<br></label><br>
-                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>rotate<br>
-                                        <input type='checkbox' name='checkbox[]' value=2 style = '-webkit-appearance: checkbox'>normal<br>
-                                        <input type='checkbox' name='checkbox[]' value=3 style = '-webkit-appearance: checkbox'>weak<br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>Rotate<br>
+                                        <input type='checkbox' name='checkbox[]' value=1 style='-webkit-appearance: checkbox'>Powerful<br>
+                                        <input type='checkbox' name='checkbox[]' value=2 style='-webkit-appearance: checkbox'>Normal<br>
+                                        <input type='checkbox' name='checkbox[]' value=3 style='-webkit-appearance: checkbox'>Weak<br>
                                     </div>";
                                     break;
                             }
-                        echo '<button>Submit</button>'
+                        echo "<button name='choose' id='choose' value='$row[ID]'>Submit</button>";
                     ?>
                     </div>
                 </div>

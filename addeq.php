@@ -1,5 +1,5 @@
 <?php
-
+include "test.php";
     $arr = array(
         'television'=>array(),
         'router'=>array('Accelerator','WIFI', 'Light'),
@@ -10,7 +10,7 @@
     $FamilyId = 123;
 
     $mysqli = require __DIR__ . "/database.php";
-    $con=mysqli_connect("localhost","root","000000","smarthouse");
+    $con=mysqli_connect("localhost","root","123456","smarthouse");
 
     $sql = "INSERT INTO Equipment(FamilyID, ID, Name, Date, Cycle, Battery, Kind)
         VALUE ('$FamilyId',?,?,?,?,?,?)";

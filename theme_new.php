@@ -85,19 +85,18 @@
                             $mysqli = require __DIR__ . "/database.php";
                             $stmt = $mysqli->stmt_init();
 
-                            $result = mysqli_query($mysqli, "SELECT * FROM pattern ORDER BY PatternID DESC");
+                            $result = mysqli_query($mysqli, "SELECT * FROM equipment ORDER BY ID DESC");
                             $num    = mysqli_num_rows($result);
                             $i = 0;
 
-                            // var_dump($num);exit;
                              for ($i = 0; $i < $num; $i++) {
-                                $result = mysqli_query($mysqli, "SELECT * FROM pattern ORDER BY PatternID DESC limit $i,1");
+                                $result = mysqli_query($mysqli, "SELECT * FROM equipment ORDER BY ID DESC limit $i,1");
                                 $row = $result->fetch_assoc();
+                                 $pattern = $row['Name'];
                                  echo " 
-                                     <option name = 'pattern' value = '$row[Name]'>$row[Name]</option>
+                                     <option name = 'pattern' onclick='checkPattern('$pattern')' value = '$row[Name]'>$row[Name]</option>
                                         ";
 
-                                 $pattern = $row['Name'];
                              }
                             ?>
                         </select>
@@ -280,7 +279,7 @@
 </body>
 
 </html>
-
+<script src="./jquery.min.js"></script>
 <script>
     document.onkeydown = function(e) {
         if ((e || event).keyCode == 13) {
@@ -300,5 +299,31 @@
             themes.appendChild(themeletter);
             board.appendChild(themes);
         }
+    }
+
+    window.onload = function() {
+        //获取select
+        let select = document.getElementsByTagName("select")[0];
+        //获取子节点
+        let options = select.children;//获取所有子节点--option
+
+        select.onchange = function () {
+            let index = select.selectedIndex;//获取选择的option对应的索引；
+            let name = options[index].innerHTML;
+
+            $.post("./theme_row.php",
+            {
+                name:name,
+            },
+            function(data,item) {
+                var data = JSON.parse( data )
+                var html = '';
+                for (var i=0;i<data.length;i++){
+                    html += "<option value="+ data[i][3] + ">"+ data[i][3] + "</option>";
+                }
+                $("#pattern").append(html);
+            });
+
+        };
     }
 </script>
