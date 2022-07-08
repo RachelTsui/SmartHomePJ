@@ -1,35 +1,39 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Dashboard using HTML</title> 
+    <title>Responsive Dashboard using HTML</title>
     <!-- MATERIALICONS  -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
-      rel="stylesheet">
-    <!-- STYLESHEET -->  
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Outlined|Material+Icons+Round"
+        rel="stylesheet">
+    <!-- STYLESHEET -->
     <link rel="stylesheet" href="./equipment.css">
+    <link rel="stylesheet" href="./theme.css"> 
 
 </head>
+
 <body>
     <div class="container">
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./images/sharp_holiday_village_black_24dp.png" >
+                    <img src="./images/sharp_holiday_village_black_24dp.png">
                     <h2>IH<span class="danger">AC</span></h2>
-                    
+
                 </div>
                 <div class="close">
                     <span class="material-icons-sharp">close</span>
-                </div>  
+                </div>
             </div>
             <div class="sidebar">
-                <a href="./index.html"  >
+                <a href="./index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html" class="active">
+                <a href="./equipments.php" class="active">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -54,15 +58,15 @@
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
-                
+
             </div>
         </aside>
         <main>
             <h1>Equipments</h1>
-            
-                <p class="greeting">Go have a look at the </p>
-            
-            <div class="insights">
+
+            <p class="greeting">Go have a look at the </p>
+
+            <!-- <div class="insights">
                 <div class="equipment">
                     <span class="material-icons-sharp">tv </span>
                     <div class="middle">
@@ -80,7 +84,7 @@
                         </details>
                     </div>
                 </div>
-<!-- end of equipment -->
+// end of equipment
                 <div class="health">
                     <span class="material-icons-outlined">watch</span>
                     <div class="middle">
@@ -97,7 +101,7 @@
                         </details>
                     </div>
                 </div>
-<!-- end of health -->
+// end of health 
                 <div class="alert">
                     <a href="./pattern.html">
                         <span class="material-icons-outlined">router</span>
@@ -117,7 +121,7 @@
                         </div>
                     </a>
                 </div>
-<!-- end of alert  -->
+// end of alert
                 <div class="happy">
                     <span class="material-icons-sharp">headset</span>
                     <div class="middle">
@@ -132,7 +136,7 @@
                         <p>ID: gdsadhs</p>
                     </details>
                 </div>
-<!-- end of p4 -->
+// end of p4 
                 <div class="add">
                     <a href="./addeq.html">
                         <span class="material-icons-sharp">add_circle</span>
@@ -143,8 +147,57 @@
                     </a>
                 </div>
 
+            </div> -->
+            <form action = "pattern.php" method="POST">
+            <div class='insights' style='grid-template-columns: repeat(4, 20rem)'>
+            
+            <?php
+                $FamilyId = 123;
+
+                $mysqli = require __DIR__ . "/database.php";
+
+                $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId)");
+                $num    = mysqli_num_rows($result);
+                $i = 0;
+                for ($i = 0; $i < $num; $i++) {
+                    $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId) ORDER BY ID limit $i,1");
+                    $row = $result->fetch_assoc();
+                    // <form action="equip.php" method="post">
+                    echo "
+                        <div class='equipment'> 
+                            
+                            <span class='material-icons-sharp'>tv </span>
+                            <div class='middle'>
+                                <div class='left'>
+                                    <h3>$row[Name]</h3>
+                                    <h1 class='success'>$row[Status]</h1>
+                                    <h3>Current Pattren: <b>$row[Pattern]</b></h3>
+                                    <h3><b>👇DETAILS</b></h3>
+                                    <h3>ID: <b>$row[ID]</b></h3>
+                                    <h3>Kind: <b>$row[Kind]</b></h3>
+                                    <h3>Add data: <b>$row[Date]</b></h3>
+                                    <h3>Repair Time: <b>134days</b></h3>
+
+                                </div>
+                            </div>
+                            <button name='choose' id='choose' value=$row[ID]>Choose pattern</button>
+                        </div>";
+                }  
+            ?>
+            
+            <div class="add" align="center" >
+                    <a href="./addeq.html">
+                        <span class="material-icons-sharp">add_circle</span>
+                        <div class="middle">
+                            <div class="middle">
+                            </div>
+                        </div>
+                    </a>
             </div>
+        </div>
+        </form>
         </main>
     </div>
 </body>
+
 </html>
