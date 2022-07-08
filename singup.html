@@ -10,7 +10,10 @@
     <h1>Signup</h1>
     
     <form action="process-signup.php" method="post">
-        
+        <div>
+            <label for="familyNo">FamilyNo</label>
+            <input type="text" id="familyNo" name = "familyNo">
+        </div>
         <div>
             <label for="name">Name</label>
             <input type="text" id="name" name = "name">
@@ -28,7 +31,13 @@
             <input type="password" id="password_confirmation" name = "password_confirmation">
         
         </div>
+        <div>
+            <input type="text" class="form-control" name="captcha" size="20" placeholder="请输入验证码">
+        </div>
+        <img src="./captcha.php" id="refresh" onclick="this.src='./captcha.php?'+Math.random()" width="200px" >
+        <p><a href=" " onclick="document.getElementById('refresh').src='./captcha.php?'+Math.random();">看不清，换一张</a ></p >
         <button>sign up</button>
+        <p>already have an acoount? <a href="./login.php">log in</a></p>
     </form>
 </body>
 </html>
