@@ -1,4 +1,5 @@
 <?php
+session_start();
 print_r($_POST);
 $mysqli = require __DIR__ . "/database.php";
 
@@ -13,11 +14,13 @@ if (!$stmt->prepare($sql)) {
 
 date_default_timezone_set('RPC'); //将默认时区调回为北京时间
 $time = date('Y/m/d H:i:s'); //输出指定时区当前时间
-        
+
+$result = mysqli_query($mysqli, "SELECT name FROM usr WHERE id = $_SESSION[user_id]");
+$row = $result->fetch_assoc();
 
 $stmt->bind_param(
     "sss",
-    $_POST["usr_id"],
+    $row["name"],
     $_POST["mess"],
     $time
 );

@@ -1,16 +1,19 @@
 <?php
+    if(strlen($_POST["Name"])>20)
+        die("Name长度需小于20");
 
     $arr = array(
-        'television'=>array(),
+        'television'=>array('switch'),
         'router'=>array('Accelerator','WIFI', 'Light'),
         'lamp'=>array('normal','bright','dark'),
         'curtain'=>array('thin','thick'),
         'fan'=>array('rotate','powerful','normal','weak'),
     );
+
     $FamilyId = 123;
 
     $mysqli = require __DIR__ . "/database.php";
-    $con=mysqli_connect("localhost","root","000000","smarthouse");
+    $con=mysqli_connect("localhost","root","123456","smarthouse");
 
     $sql = "INSERT INTO Equipment(FamilyID, ID, Name, Date, Cycle, Battery, Kind)
         VALUE ('$FamilyId',?,?,?,?,?,?)";
