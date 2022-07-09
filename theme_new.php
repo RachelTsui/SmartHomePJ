@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -54,7 +55,7 @@
                     <span class="material-icons-sharp">add_circle</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="./login.html">
+                <a href="./logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
@@ -326,4 +327,5 @@
 
         };
     }
+
 </script>

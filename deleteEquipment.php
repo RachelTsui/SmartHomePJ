@@ -1,3 +1,4 @@
+
 <?php
     $FamilyId = 123;
     $ID = $_POST["delete"];
@@ -36,4 +37,5 @@
     mysqli_query($con3, $sql3) or die (mysqli_error());
 
     header("Location: equipments.php");
+
 ?>

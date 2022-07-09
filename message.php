@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -32,7 +33,7 @@
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html">
+                <a href="./equipments.php">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -40,20 +41,20 @@
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
-                <a href="./message.html">
+                <a href="./message.php">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
                 </a>
-                <a href="#">
+                <a href="./report.php">
                     <span class="material-icons-sharp">report</span>
                     <h3>Reports</h3>
                 </a>
-                <a href="#">
+                <a href="./addeq.html">
                     <span class="material-icons-sharp">add_circle</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="./login.html">
+                <a href="./logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
@@ -78,12 +79,12 @@
             <form action="mess.php" method="post">
 
                 <div class="themepallete">
-                    <div class=="theme">
+                    <!-- <div class=="theme">
                         <label for="theme" class="text-muted">What's your name</label>
                         <div>
                             <input type="usr_id" id="usr_id" name="usr_id">
                         </div>
-                    </div>
+                    </div> -->
                     <div class=="theme">
                         <label for="theme" class="text-muted">What do you wang to say</label>
                         <div>
@@ -143,4 +144,5 @@
             console.log(message);
         }
     }
+
 </script>

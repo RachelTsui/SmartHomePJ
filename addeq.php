@@ -1,12 +1,16 @@
 <?php
-include "test.php";
+    if(strlen($_POST["Name"])>20)
+        die("Name长度需小于20");
+
+
     $arr = array(
-        'television'=>array(),
+        'television'=>array('switch'),
         'router'=>array('Accelerator','WIFI', 'Light'),
         'lamp'=>array('normal','bright','dark'),
         'curtain'=>array('thin','thick'),
         'fan'=>array('rotate','powerful','normal','weak'),
     );
+
     $FamilyId = 123;
 
     $mysqli = require __DIR__ . "/database.php";

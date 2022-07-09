@@ -1,3 +1,4 @@
+
 <?php
     session_start();
 
@@ -16,6 +17,7 @@
 
     header("Location: equipments.php");
 ?>
+
 
 
 

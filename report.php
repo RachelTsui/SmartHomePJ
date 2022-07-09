@@ -13,44 +13,47 @@
     <link rel="stylesheet" href="./theme.css">
 </head>
 <body>
-    <div class="container">
+<div class="container">
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./images/sharp_holiday_village_black_24dp.png" >
+                    <img src="./images/sharp_holiday_village_black_24dp.png">
                     <h2>IH<span class="danger">AC</span></h2>
+
                 </div>
                 <div class="close">
                     <span class="material-icons-sharp">close</span>
-                </div>  
+                </div>
             </div>
             <div class="sidebar">
-                <a href="./index.php"  >
+
+                <a href="./index.php">
+
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.html" >
+                <a href="./equipments.php">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
-                <a href="#">
+                <a href="./theme_new.php">
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
-                <a href="#">
+                <a href="./message.php">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
                 </a>
-                <a href="#">
+                <a href="./report.php">
                     <span class="material-icons-sharp">report</span>
                     <h3>Reports</h3>
                 </a>
-                <a href="#">
+                <a href="./addeq.html">
                     <span class="material-icons-sharp">add_circle</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="./login.html">
+                <a href="./logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>

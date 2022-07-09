@@ -1,3 +1,4 @@
+
 <?php
 $mysqli = require __DIR__ . "/database.php";
 $stmt = $mysqli->stmt_init();
@@ -11,3 +12,4 @@ if ($row){
 $result_all = mysqli_query($mysqli, "SELECT * FROM `pattern` where `FamilyID`='$FamilyID' and `ID` ='$ID'");
 $data    = mysqli_fetch_all($result_all);
 echo  json_encode($data);
+

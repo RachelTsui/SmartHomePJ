@@ -11,23 +11,23 @@
 </head>
 <body>
     <div class="container">
-        <aside>
+    <aside>
             <div class="top">
                 <div class="logo">
                     <img src="./images/sharp_holiday_village_black_24dp.png">
                     <h2>IH<span class="danger">AC</span></h2>
-                    
+
                 </div>
                 <div class="close">
                     <span class="material-icons-sharp">close</span>
-                </div>  
+                </div>
             </div>
             <div class="sidebar">
-                <a href="./indexH.php">
+                <a href="./index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="./equipments.php" class="active">
+                <a href="./equipments.php">
                     <span class="material-icons-sharp">precision_manufacturing</span>
                     <h3>Equipment</h3>
                 </a>
@@ -35,12 +35,12 @@
                     <span class="material-icons-outlined">color_lens</span>
                     <h3>Themes</h3>
                 </a>
-                <a href="#">
+                <a href="./message.php">
                     <span class="material-icons-sharp">email</span>
                     <h3>Messages</h3>
                     <span class="message-count">26</span>
                 </a>
-                <a href="#">
+                <a href="./report.php">
                     <span class="material-icons-sharp">report</span>
                     <h3>Reports</h3>
                 </a>
@@ -48,11 +48,11 @@
                     <span class="material-icons-sharp">add_circle</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="./login.html">
+                <a href="./logout.php">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Log Out</h3>
                 </a>
-                
+
             </div>
         </aside>
         <main>
@@ -94,6 +94,7 @@
                         <div class='left'>
                             <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+                            <h3>PatternID:<b>$row[PatternID]</b><br></h3>
                             <h3>WIFI:<b>$row[WIFI]</b><br></h3>
                             <h3>Accerelator:<b>$row[Accelerator]</b><br></h3>  
                             <h3>Light:<b>$row[Light]</b><br></h3>
@@ -117,6 +118,7 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+                            <h3>PatternID:<b>$row[PatternID]</b><br></h3>
                             <h3>Power:<b>$row[Power]</b><br></h3>
                             
                         </div>
@@ -139,6 +141,7 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+                            <h3>PatternID:<b>$row[PatternID]</b><br></h3>
                             <h3>Normal:<b>$row[Normal]</b><br></h3>
                             <h3>Bright:<b>$row[Bright]</b><br></h3>  
                             <h3>Dark:<b>$row[Dark]</b><br></h3>
@@ -162,8 +165,11 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
-                            <h3>thin:<b>$row[Thin]</b><br></h3>
-                            <h3>thick:<b>$row[Thick]</b><br></h3>  
+
+                            <h3>PatternID:<b>$row[PatternID]</b><br></h3>
+                            <h3>Thin:<b>$row[Thin]</b><br></h3>
+                            <h3>Thick:<b>$row[Thick]</b><br></h3>  
+
                             
                         </div>
                     </div>
@@ -185,6 +191,9 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+
+                            <h3>PatternID:<b>$row[PatternID]</b><br></h3>
+
                             <h3>rotate:<b>$row[Rotate]</b><br></h3>
                             <h3>powerful:<b>$row[Powerful]</b><br></h3>  
                             <h3>normal:<b>$row[Normal]</b><br></h3>
