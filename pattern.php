@@ -165,9 +165,11 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+
                             <h3>PatternID:<b>$row[PatternID]</b><br></h3>
                             <h3>Thin:<b>$row[Thin]</b><br></h3>
                             <h3>Thick:<b>$row[Thick]</b><br></h3>  
+
                             
                         </div>
                     </div>
@@ -189,7 +191,9 @@
                         <div class='left'>
                         <h3>$eqname</h3>
                             <h2>$row[Name]<br></h2>
+
                             <h3>PatternID:<b>$row[PatternID]</b><br></h3>
+
                             <h3>rotate:<b>$row[Rotate]</b><br></h3>
                             <h3>powerful:<b>$row[Powerful]</b><br></h3>  
                             <h3>normal:<b>$row[Normal]</b><br></h3>

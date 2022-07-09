@@ -1,7 +1,9 @@
 <?php 
     session_start();
+
     if(strlen($_POST["Name"])>10)
         die("Name长度需小于10");
+
     
     $FamilyId = 123;
     $ID = $_SESSION["ID"];
