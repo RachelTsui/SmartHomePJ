@@ -2,6 +2,7 @@
     if(strlen($_POST["Name"])>20)
         die("Name长度需小于20");
 
+
     $arr = array(
         'television'=>array('switch'),
         'router'=>array('Accelerator','WIFI', 'Light'),

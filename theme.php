@@ -1,3 +1,4 @@
+
 <?php
 
 $mysqli = require __DIR__ . "/themedatabase.php";
@@ -27,4 +28,5 @@ if($stmt->execute()){
 }
 print_r($_POST);
 header("Location: theme_new.php");
+
 ?>

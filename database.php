@@ -1,14 +1,11 @@
 <?php
 $host = "localhost";
-$dbname = "smarthouse";
+$dbname = "smartHouse";
 $username = "root";
 $password = "123456";
 
-$mysqli = mysqli_connect($host, $username, $password,$dbname);
-
-if(!$mysqli)
-    die("SQL error: " . $sql->error);
-//echo 'Connected Successfully';
+$mysqli = new mysqli($host,$username,$password,$dbname);
+if ($mysqli->connect_errno){
+    die("Connection error: " . $mysqli->connect_errno);
+}
 return $mysqli;
-
-?>

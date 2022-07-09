@@ -66,6 +66,7 @@
                     <div class="middle">
                         <div class="left">
                             <a href="./equipments.php">
+
                                 <h3>Total Number of Equipments</h3>
                                 <?PHP
 
@@ -74,6 +75,7 @@
                                 $mysqli = require __DIR__ . "/database.php";
                                 $result = mysqli_query($mysqli, "SELECT * FROM equipment WHERE (FamilyID = $FamilyId)");
                                 $num    = mysqli_num_rows($result);
+
                                 echo "<h1>$num</h1>";
                                 ?>
                             </a>
@@ -88,6 +90,7 @@
                         <div class="left">
                             <h3>health_and_safety</h3>
                             <?PHP
+
                             $mysqli = require __DIR__ . "/database.php";
                             $result = mysqli_query($mysqli, "SELECT * FROM reports");
                             $nume    = mysqli_num_rows($result);
@@ -98,6 +101,7 @@
                                 echo "<h1>ALL good</h1>";
                             }
                             ?>
+
                         </div>
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
@@ -106,6 +110,7 @@
                 <div class="alert">
                     <span class="material-icons-sharp">notifications</span>
                     <div class="middle">
+
                         <a href="./report.php">
                             <h3>Alert</h3>
                             <?PHP
@@ -115,6 +120,7 @@
                             echo "<h1>$nume</h1>";
                             ?>
                         </a>
+
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
@@ -153,6 +159,7 @@
                             $bat = strval($row["Electric"]);
 
                         echo "
+
                     <tbody>
                         <tr>
                             <td>$row[Name]</td> 

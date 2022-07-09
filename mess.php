@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 print_r($_POST);
@@ -46,5 +47,6 @@ while ($row = mysqli_fetch_array($result)) {
 echo "</table>";
 
 header("Location: message.php");
+
 
 ?>
